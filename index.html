@@ -970,7 +970,7 @@
                 <div class="cta-buttons">
                     <a href="afrahnakanwagi@gmail.com" class="primary-btn">Hire Me <i
                             class="ri-arrow-right-line"></i></a>
-                    <a href="file:///C:/Users/HP/Documents/CV%20Template.pdf" class="secondary-btn"
+                    <a href="https://docs.google.com/document/d/1vRQiuro40e5aU4u9NOvvD-NRbNv61jiA/edit?usp=sharing&ouid=103588101516443296160&rtpof=true&sd=true" class="secondary-btn"
                         id="download-cv">Download CV <i class="ri-download-line"></i></a>
                 </div>
                 <div class="social-icons">
@@ -1515,8 +1515,348 @@
                 navList.classList.toggle('active');
                 menuBtn.innerHTML = navList.classList.contains('active') ?
                     '<i class="ri-close-line"></i>' : '<i class="ri-menu-line"></i>';
-                });
-            });
+                        });
+            
+                        // Close mobile menu when clicking on a link
+                        const navLinks = document.querySelectorAll('.nav-link');
+                        navLinks.forEach(link => {
+                            link.addEventListener('click', () => {
+                                navList.classList.remove('active');
+                                menuBtn.innerHTML = '<i class="ri-menu-line"></i>';
+                            });
+                        });
+            
+                        // Smooth scrolling for internal links
+                        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                            anchor.addEventListener('click', function (e) {
+                                e.preventDefault();
+            
+                                const targetId = this.getAttribute('href');
+                                if (targetId === '#') return;
+            
+                                const targetElement = document.querySelector(targetId);
+                                if (targetElement) {
+                                    window.scrollTo({
+                                        top: targetElement.offsetTop - 80,
+                                        behavior: 'smooth'
+                                    });
+                                }
+                            });
+                        });
+            
+                        // Sticky Header
+                        const header = document.querySelector('header');
+                        window.addEventListener('scroll', function () {
+                            if (window.scrollY > 50) {
+                                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                            } else {
+                                header.style.boxShadow = 'none';
+                            }
+                        });
+            
+                        // Typed text effect for hero subtitle
+                        const typedTextElement = document.querySelector('.typed-text');
+                        const textArray = ["Software Developer", "Web Developer", "UI/UX Designer"];
+                        let textIndex = 0;
+                        let charIndex = 0;
+                        let isDeleting = false;
+                        let typingDelay = 100;
+                        let erasingDelay = 50;
+                        let newTextDelay = 2000;
+            
+                        function type() {
+                            const currentText = textArray[textIndex];
+            
+                            if (isDeleting) {
+                                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                                charIndex--;
+                                typingDelay = erasingDelay;
+                            } else {
+                                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                                charIndex++;
+                                typingDelay = 100;
+                            }
+            
+                            if (!isDeleting && charIndex === currentText.length) {
+                                typingDelay = newTextDelay;
+                                isDeleting = true;
+                            } else if (isDeleting && charIndex === 0) {
+                                isDeleting = false;
+                                textIndex = (textIndex + 1) % textArray.length;
+                            }
+            
+                            setTimeout(type, typingDelay);
+                        }
+            
+                        setTimeout(type, 1000);
+            
+                        // Project Filtering
+                        const filterBtns = document.querySelectorAll('.filter-btn');
+                        const projectCards = document.querySelectorAll('.project-card');
+            
+                        filterBtns.forEach(btn => {
+                            btn.addEventListener('click', function () {
+                                // Remove active class from all buttons
+                                filterBtns.forEach(btn => btn.classList.remove('active'));
+                                // Add active class to clicked button
+                                this.classList.add('active');
+            
+                                const filterValue = this.getAttribute('data-filter');
+            
+                                projectCards.forEach(card => {
+                                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                                        card.style.display = 'block';
+                                        setTimeout(() => {
+                                            card.style.opacity = '1';
+                                            card.style.transform = 'translateY(0)';
+                                        }, 100);
+                                    } else {
+                                        card.style.opacity = '0';
+                                        card.style.transform = 'translateY(20px)';
+                                        setTimeout(() => {
+                                            card.style.display = 'none';
+                                        }, 300);
+                                    }
+                                });
+                            });
+                        });
+            
+                        // Contact Form Handling
+                        const contactForm = document.getElementById('contactForm');
+            
+                        contactForm.addEventListener('submit', function (e) {
+                            e.preventDefault();
+            
+                            // Get form values
+                            const name = document.getElementById('name').value;
+                            const email = document.getElementById('email').value;
+                            const subject = document.getElementById('subject').value;
+                            const message = document.getElementById('message').value;
+            
+                            // Validate form
+                            if (!name || !email || !subject || !message) {
+                                alert('Please fill all fields');
+                                return;
+                            }
+            
+                            // In a real scenario, you would send this data to a server
+                            // For now, just show an alert and reset the form
+                            alert('Thank you for your message! I will get back to you soon.');
+                            contactForm.reset();
+                        });
+            
+                        const heroCanvas = document.getElementById('hero-canvas');
+                        const heroCtx = heroCanvas.getContext('2d');
+                        const heroImage = new Image();
+                        heroImage.src = '/images/mine.png'; // Replace with your image path
+            
+                        heroCanvas.width = 540;
+                        heroCanvas.height = 500;
+            
+                        let scale = 0.15; // Reduced scale to make image appear smaller (15% of original size)
+                        let opacity = 0; // Starting opacity
+                        let x = heroCanvas.width / 2; // X position (center of canvas)
+                        let y = heroCanvas.height / 2; // Y position (center of canvas)
+            
+                        // Animation function with 3D effect
+                        function animateHeroImage() {
+                            heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height); // Clear the canvas
+            
+                            // Create background gradient (Glass effect)
+                            const gradient = heroCtx.createLinearGradient(0, 0, heroCanvas.width, heroCanvas.height);
+                            gradient.addColorStop(0, 'rgba(93, 92, 222, 0.6)'); // Lighter background
+                            gradient.addColorStop(1, 'rgba(135, 206, 235, 0.6)'); // Lighter background
+                            heroCtx.fillStyle = gradient;
+                            heroCtx.fillRect(0, 0, heroCanvas.width, heroCanvas.height);
+            
+                            // Set opacity for fade-in effect
+                            heroCtx.globalAlpha = opacity;
+            
+                            // Set shadow for 3D effect (glass-like shadow)
+                            heroCtx.shadowColor = 'rgba(0, 0, 0, 0.3)';
+                            heroCtx.shadowBlur = 15;
+                            heroCtx.shadowOffsetX = 10;
+                            heroCtx.shadowOffsetY = 10;
+            
+                            // Draw the image with scaling, no rotation
+                            heroCtx.save(); // Save the current canvas state
+                            heroCtx.translate(x, y); // Move to the center of the canvas
+                            heroCtx.translate(-heroImage.width * scale / 2, -heroImage.height * scale / 2); // Re-adjust position to keep it centered
+                            heroCtx.drawImage(heroImage, 0, 0, heroImage.width * scale, heroImage.height * scale); // Draw the image with scaling
+                            heroCtx.restore(); // Restore the original canvas state
+            
+                            // Add text
+                            heroCtx.font = 'bold 40px Poppins';
+                            heroCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                            heroCtx.textAlign = 'center';
+                            heroCtx.fillText('PORTFOLIO', heroCanvas.width / 2, 400);
+            
+                            heroCtx.font = '20px Poppins';
+                            heroCtx.fillText('Web Developer & UI/UX Designer', heroCanvas.width / 2, 440);
+            
+                            // Update opacity and scale for animation
+                            if (opacity < 1) opacity += 0.01;  // Fade-in effect
+                            if (scale < 0.2) scale += 0.005;  // Scale effect (stops at 20%)
+            
+                            // Loop animation
+                            requestAnimationFrame(animateHeroImage);
+                        }
+            
+                        // Start animation once the image is loaded
+                        heroImage.onload = function () {
+                            animateHeroImage();
+                        };
+            
+                        if (aboutCanvas) {
+                            aboutCanvas.width = 500;
+                            aboutCanvas.height = 400;
+            
+                            const aboutCanvas = document.getElementById('about-canvas');
+                            const aboutCtx = aboutCanvas.getContext('2d');
+                            const aboutImage = new Image();
+                            aboutImage.src = '/images/mine.png'; // Replace with the correct image path
+            
+                            aboutCanvas.width = 500;
+                            aboutCanvas.height = 400;
+            
+                            // Draw the image after it's loaded
+                            aboutImage.onload = function () {
+                                drawAboutImage();
+                            };
+            
+                            function drawAboutImage() {
+                                const centerX = 250;
+                                const centerY = 200;
+                                const radius = 150;
+            
+                                // Draw background
+                                aboutCtx.fillStyle = '#F0F8FF';
+                                aboutCtx.fillRect(0, 0, 500, 400);
+            
+                                // Draw the image inside the circle (avatar)
+                                aboutCtx.save(); // Save the current canvas state
+                                aboutCtx.beginPath();
+                                aboutCtx.arc(centerX, centerY, radius, 0, Math.PI * 2); // Create a circular frame
+                                aboutCtx.clip(); // Clip the image to the circle
+            
+                                // Draw the image (scaled to fit inside the circle)
+                                aboutCtx.drawImage(aboutImage, centerX - radius, centerY - radius, radius * 2, radius * 2);
+            
+                                aboutCtx.restore(); // Restore the original canvas state
+            
+                                // Add a border (circle with border radius) around the image
+                                aboutCtx.lineWidth = 10; // Set border width
+                                aboutCtx.strokeStyle = '#FFFFFF'; // Set border color
+                                aboutCtx.beginPath();
+                                aboutCtx.arc(centerX, centerY, radius, 0, Math.PI * 2); // Border circle
+                                aboutCtx.stroke();
+                            }
+            
+                            // Create project images
+                            const projectCanvases = document.querySelectorAll('.project-img');
+                            projectCanvases.forEach(canvas => {
+                                const ctx = canvas.getContext('2d');
+                                canvas.width = 400;
+                                canvas.height = 220;
+            
+                                const color = canvas.getAttribute('data-color') || '#5D5CDE';
+            
+                                // Create gradient background
+                                const gradient = ctx.createLinearGradient(0, 0, 400, 220);
+                                gradient.addColorStop(0, color);
+                                gradient.addColorStop(1, '#FFFFFF');
+            
+                                ctx.fillStyle = gradient;
+                                ctx.fillRect(0, 0, 400, 220);
+            
+                                // Add some shapes
+                                for (let i = 0; i < 5; i++) {
+                                    ctx.beginPath();
+                                    const size = Math.random() * 50 + 20;
+                                    const x = Math.random() * 400;
+                                    const y = Math.random() * 220;
+            
+                                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`;
+                                    ctx.fillRect(x, y, size, size);
+                                }
+                            });
+            
+                            // Create cert logos
+                            const certLogos = document.querySelectorAll('.cert-logo');
+                            certLogos.forEach(canvas => {
+                                const ctx = canvas.getContext('2d');
+                                canvas.width = 60;
+                                canvas.height = 60;
+            
+                                const color = canvas.getAttribute('data-color') || '#5D5CDE';
+            
+                                // Draw circle
+                                ctx.beginPath();
+                                ctx.arc(30, 30, 25, 0, Math.PI * 2);
+                                ctx.fillStyle = color;
+                                ctx.fill();
+            
+                                // Draw badge shape
+                                ctx.beginPath();
+                                ctx.moveTo(20, 20);
+                                ctx.lineTo(40, 20);
+                                ctx.lineTo(45, 30);
+                                ctx.lineTo(40, 40);
+                                ctx.lineTo(20, 40);
+                                ctx.lineTo(15, 30);
+                                ctx.closePath();
+                                ctx.fillStyle = '#FFFFFF';
+                                ctx.fill();
+            
+                                // Draw text
+                                ctx.font = 'bold 14px Poppins';
+                                ctx.fillStyle = color;
+                                ctx.textAlign = 'center';
+                                ctx.textBaseline = 'middle';
+                                ctx.fillText('CERT', 30, 30);
+                            });
+            
+                            // Animate skill bars on scroll
+                            const skillBars = document.querySelectorAll('.skill-progress');
+            
+                            function animateSkillBars() {
+                                skillBars.forEach(bar => {
+                                    const percentage = bar.parentElement.previousElementSibling.querySelector('.skill-percentage').textContent;
+                                    bar.style.width = '0';
+            
+                                    setTimeout(() => {
+                                        bar.style.width = percentage;
+                                    }, 300);
+                                });
+                            }
+            
+                            // Intersection Observer for Skill Bars
+                            const skillsSection = document.getElementById('skills');
+            
+                            if (skillsSection) {
+                                const observer = new IntersectionObserver((entries) => {
+                                    entries.forEach(entry => {
+                                        if (entry.isIntersecting) {
+                                            animateSkillBars();
+                                            observer.unobserve(entry.target);
+                                        }
+                                    });
+                                }, { threshold: 0.2 });
+            
+                                observer.observe(skillsSection);
+                            }
+            
+                            // Download CV functionality
+                            const downloadCvBtn = document.getElementById('download-cv');
+                            downloadCvBtn.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                alert('In a real portfolio, this button would download your CV. Since file downloads are not supported in this environment, you would typically link to a hosted PDF file.');
+                            });
+                        }
+                        });
+                    </script>
+                </body>
+            </html>
 
             // Close mobile menu when clicking on a link
             const navLinks = document.querySelectorAll('.nav-link');
