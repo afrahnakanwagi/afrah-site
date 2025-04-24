@@ -18,7 +18,7 @@
             --dark-text: #333333;
             --light-text: #FFFFFF;
             --gray-text: #666666;
-            --border-radius: 12px;
+            --border-radius: 30px;
             --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             --transition: all 0.3s ease;
         }
@@ -174,7 +174,7 @@
             font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: 1.5rem;
+            margin-bottom:  Maitland1.5rem;
         }
 
         .hero-subtitle {
@@ -237,20 +237,16 @@
 
         .hero-img {
             width: 100%;
-            height: auto;
+            height: 750px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             animation: float 6s ease-in-out infinite;
-
         }
 
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-20px);
             }
@@ -526,9 +522,10 @@
 
         .project-img {
             width: 100%;
-            height: 220px;
+            height: 240px;
             object-fit: cover;
             object-position: top;
+            border-radius: 20px;
         }
 
         .project-content {
@@ -604,8 +601,9 @@
         }
 
         .cert-logo {
-            width: 60px;
-            height: 60px;
+            width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
             margin-bottom: 1.5rem;
         }
 
@@ -912,7 +910,6 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -968,10 +965,10 @@
                 <h1 class="hero-title">Afrah Nakanwagi</h1>
                 <p class="hero-subtitle">I'm a passionate <span class="typed-text"></span></p>
                 <div class="cta-buttons">
-                    <a href="afrahnakanwagi@gmail.com" class="primary-btn">Hire Me <i
+                    <a href="mailto:afrahnakanwagi@gmail.com" class="primary-btn">Hire Me <i
                             class="ri-arrow-right-line"></i></a>
-                    <a href="https://docs.google.com/document/d/1vRQiuro40e5aU4u9NOvvD-NRbNv61jiA/edit?usp=sharing&ouid=103588101516443296160&rtpof=true&sd=true" class="secondary-btn"
-                        id="download-cv">Download CV <i class="ri-download-line"></i></a>
+                    <a href="https://docs.google.com/document/d/1vRQiuro40e5aU4u9NOvvD-NRbNv61jiA/edit?usp=sharing&ouid=103588101516443296160&rtpof=true&sd=true"
+                        class="secondary-btn" id="download-cv">Download CV <i class="ri-download-line"></i></a>
                 </div>
                 <div class="social-icons">
                     <a href="https://github.com/afrahnakanwagi" class="social-link"><i class="ri-github-fill"></i></a>
@@ -982,7 +979,7 @@
                 </div>
             </div>
             <div class="hero-image fade-in-up delay-2">
-                <canvas id="hero-canvas" class="hero-img"></canvas>
+                <img src="images/mine.png" alt="Afrah Nakanwagi" class="hero-img">
             </div>
         </div>
     </section>
@@ -997,16 +994,16 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <canvas id="about-canvas" class="about-img"></canvas>
+                    <img src="images/mine.png" alt="Afrah Nakanwagi" class="about-img">
                     <div class="experience-box">
-                        <div class="experience-value">3 mosi</div>
+                        <div class="experience-value">3 months</div>
                         <div class="experience-label">Experience</div>
                     </div>
                 </div>
                 <div class="about-text">
                     <h3>Who am I?</h3>
                     <p>I'm a Software Developer, Web Developer, and UI/UX Designer with a passion for creating
-                        beautiful, functional, and user-centered digital experiences.I am always looking for new and
+                        beautiful, functional, and user-centered digital experiences. I am always looking for new and
                         innovative ways to bring my clients' visions to life.</p>
                     <p>I develop websites and applications with a focus on responsive design, accessibility, and
                         cutting-edge technologies. Behind every project lies the perfect blend of creativity and
@@ -1105,7 +1102,7 @@
                             <span class="skill-percentage">65%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%;"></div>
+                            <div class="skill-progress" style="width: 65%;"></div>
                         </div>
                     </div>
 
@@ -1152,7 +1149,7 @@
                         <span class="skill-tag">Web Development</span>
                         <span class="skill-tag">React JS Basics</span>
                         <span class="skill-tag">SQL</span>
-                        <span class="skill-tag">Posgresql</span>
+                        <span class="skill-tag">PostgreSQL</span>
                         <span class="skill-tag">Django</span>
                         <span class="skill-tag">Python</span>
                         <span class="skill-tag">CI/CD</span>
@@ -1172,8 +1169,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">My Projects</h2>
-                <p class="section-subtitle">personal projects that I created
-                </p>
+                <p class="section-subtitle">Personal projects that I created</p>
             </div>
 
             <div class="projects-filter">
@@ -1185,7 +1181,7 @@
 
             <div class="projects-grid">
                 <div class="project-card" data-category="web">
-                    <canvas class="project-img" data-color="#5D5CDE"></canvas>
+                    <img src="images/grocery.png" alt="Grocery Inventory Management" class="project-img">
                     <div class="project-content">
                         <span class="project-tag">Web Development</span>
                         <h3 class="project-title">Grocery Inventory Management</h3>
@@ -1206,10 +1202,10 @@
                 </div>
 
                 <div class="project-card" data-category="ui">
-                    <canvas class="project-img" data-color="#87CEEB"></canvas>
+                    <img src="images/agro.png" alt="Agro-Tourism Website" class="project-img">
                     <div class="project-content">
                         <span class="project-tag">UI/UX Design</span>
-                        <h3 class="project-title">Agro-Tourism website</h3>
+                        <h3 class="project-title">Agro-Tourism Website</h3>
                         <p class="project-desc">I designed the service pages for the Agro-Tourism website of Mukisa
                             Enterprises using Figma, creating an intuitive and visually appealing layout. My design
                             focused on highlighting key offerings such as farm tours, hands-on agricultural experiences,
@@ -1225,7 +1221,7 @@
                 </div>
 
                 <div class="project-card" data-category="app">
-                    <canvas class="project-img" data-color="#F0F8FF"></canvas>
+                    <img src="images/recipe.png" alt="Recipe Finder App" class="project-img">
                     <div class="project-content">
                         <span class="project-tag">App Development</span>
                         <h3 class="project-title">Recipe Finder App</h3>
@@ -1247,7 +1243,7 @@
                 </div>
 
                 <div class="project-card" data-category="web">
-                    <canvas class="project-img" data-color="#5D5CDE"></canvas>
+                    <img src="images/movie.png" alt="Movie App" class="project-img">
                     <div class="project-content">
                         <span class="project-tag">Web App</span>
                         <h3 class="project-title">Movie App</h3>
@@ -1258,7 +1254,7 @@
                             features a clean and responsive UI, ensuring smooth navigation and seamless trailer
                             playback. Through this project, I improved my understanding of React components, state
                             management, API integration, and UI design, further strengthening my frontend development
-                            skills. </p>
+                            skills.</p>
                         <div class="project-links">
                             <a href="https://moiemovies.netlify.app/" class="project-link" target="_blank"><i
                                     class="ri-eye-line"></i> Live Demo</a>
@@ -1269,9 +1265,9 @@
                 </div>
 
                 <div class="project-card" data-category="ui">
-                    <canvas class="project-img" data-color="#87CEEB"></canvas>
+                    <img src="images/glam.png" alt="Beauty Glam Website" class="project-img">
                     <div class="project-content">
-                        <span class="project-tag">Wordpress</span>
+                        <span class="project-tag">WordPress</span>
                         <h3 class="project-title">Beauty Glam Website</h3>
                         <p class="project-desc">I created a Beauty Glam Website using WordPress, designed to showcase
                             beauty products, services, and tips. The website features an elegant and modern layout,
@@ -1291,7 +1287,7 @@
                 </div>
 
                 <div class="project-card" data-category="app">
-                    <canvas class="project-img" data-color="#F0F8FF"></canvas>
+                    <img src="images/tech.png" alt="Realtech Website" class="project-img">
                     <div class="project-content">
                         <span class="project-tag">WordPress</span>
                         <h3 class="project-title">Website for Realtech</h3>
@@ -1310,8 +1306,6 @@
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
     </section>
@@ -1326,7 +1320,7 @@
 
             <div class="cert-container">
                 <div class="cert-card">
-                    <canvas class="cert-logo" data-color="#5D5CDE"></canvas>
+                    <img src="images/refactory.png" alt="Refactory Academy Logo" class="cert-logo">
                     <h3 class="cert-title">CSE Python</h3>
                     <p class="cert-issuer">Refactory Academy</p>
                     <p class="cert-date">December 2024</p>
@@ -1335,7 +1329,7 @@
                 </div>
 
                 <div class="cert-card">
-                    <canvas class="cert-logo" data-color="#87CEEB"></canvas>
+                    <img src="images/simplilearn.png" alt="Simplilearn Logo" class="cert-logo">
                     <h3 class="cert-title">UI/UX Design Basics</h3>
                     <p class="cert-issuer">Simplilearn</p>
                     <p class="cert-date">December 2024</p>
@@ -1344,7 +1338,7 @@
                 </div>
 
                 <div class="cert-card">
-                    <canvas class="cert-logo" data-color="#F0F8FF"></canvas>
+                    <img src="images/simplilearn.png" alt="Simplilearn Logo" class="cert-logo">
                     <h3 class="cert-title">React JS Basics</h3>
                     <p class="cert-issuer">Simplilearn</p>
                     <p class="cert-date">December 2024</p>
@@ -1353,9 +1347,9 @@
                 </div>
 
                 <div class="cert-card">
-                    <canvas class="cert-logo" data-color="#5D5CDE"></canvas>
+                    <img src="images/python.png" alt="Kaggle Logo" class="cert-logo">
                     <h3 class="cert-title">Python</h3>
-                    <p class="cert-issuer">Kagle</p>
+                    <p class="cert-issuer">Kaggle</p>
                     <p class="cert-date">December 2024</p>
                     <a href="#" class="cert-link" target="_blank">View Certificate <i
                             class="ri-external-link-line"></i></a>
@@ -1395,7 +1389,7 @@
                         </div>
                         <div class="contact-detail">
                             <h4>Email</h4>
-                            <a href="mailto:hello@johndoe.com">afrahnakanwagi@gmail.com</a>
+                            <a href="mailto:afrahnakanwagi@gmail.com">afrahnakanwagi@gmail.com</a>
                         </div>
                     </div>
 
@@ -1405,7 +1399,7 @@
                         </div>
                         <div class="contact-detail">
                             <h4>Phone</h4>
-                            <a href="tel:+12345678900">+256 768917360</a>
+                            <a href="tel:+256768917360">+256 768917360</a>
                         </div>
                     </div>
 
@@ -1500,7 +1494,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2025 Afrah Nakanwagi . All Rights Reserved.</p>
+                <p>© 2025 Afrah Nakanwagi. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
@@ -1515,347 +1509,167 @@
                 navList.classList.toggle('active');
                 menuBtn.innerHTML = navList.classList.contains('active') ?
                     '<i class="ri-close-line"></i>' : '<i class="ri-menu-line"></i>';
-                        });
-            
-                        // Close mobile menu when clicking on a link
-                        const navLinks = document.querySelectorAll('.nav-link');
-                        navLinks.forEach(link => {
-                            link.addEventListener('click', () => {
-                                navList.classList.remove('active');
-                                menuBtn.innerHTML = '<i class="ri-menu-line"></i>';
-                            });
-                        });
-            
-                        // Smooth scrolling for internal links
-                        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                            anchor.addEventListener('click', function (e) {
-                                e.preventDefault();
-            
-                                const targetId = this.getAttribute('href');
-                                if (targetId === '#') return;
-            
-                                const targetElement = document.querySelector(targetId);
-                                if (targetElement) {
-                                    window.scrollTo({
-                                        top: targetElement.offsetTop - 80,
-                                        behavior: 'smooth'
-                                    });
-                                }
-                            });
-                        });
-            
-                        // Sticky Header
-                        const header = document.querySelector('header');
-                        window.addEventListener('scroll', function () {
-                            if (window.scrollY > 50) {
-                                header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                            } else {
-                                header.style.boxShadow = 'none';
-                            }
-                        });
-            
-                        // Typed text effect for hero subtitle
-                        const typedTextElement = document.querySelector('.typed-text');
-                        const textArray = ["Software Developer", "Web Developer", "UI/UX Designer"];
-                        let textIndex = 0;
-                        let charIndex = 0;
-                        let isDeleting = false;
-                        let typingDelay = 100;
-                        let erasingDelay = 50;
-                        let newTextDelay = 2000;
-            
-                        function type() {
-                            const currentText = textArray[textIndex];
-            
-                            if (isDeleting) {
-                                typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-                                charIndex--;
-                                typingDelay = erasingDelay;
-                            } else {
-                                typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-                                charIndex++;
-                                typingDelay = 100;
-                            }
-            
-                            if (!isDeleting && charIndex === currentText.length) {
-                                typingDelay = newTextDelay;
-                                isDeleting = true;
-                            } else if (isDeleting && charIndex === 0) {
-                                isDeleting = false;
-                                textIndex = (textIndex + 1) % textArray.length;
-                            }
-            
-                            setTimeout(type, typingDelay);
-                        }
-            
-                        setTimeout(type, 1000);
-            
-                        // Project Filtering
-                        const filterBtns = document.querySelectorAll('.filter-btn');
-                        const projectCards = document.querySelectorAll('.project-card');
-            
-                        filterBtns.forEach(btn => {
-                            btn.addEventListener('click', function () {
-                                // Remove active class from all buttons
-                                filterBtns.forEach(btn => btn.classList.remove('active'));
-                                // Add active class to clicked button
-                                this.classList.add('active');
-            
-                                const filterValue = this.getAttribute('data-filter');
-            
-                                projectCards.forEach(card => {
-                                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                                        card.style.display = 'block';
-                                        setTimeout(() => {
-                                            card.style.opacity = '1';
-                                            card.style.transform = 'translateY(0)';
-                                        }, 100);
-                                    } else {
-                                        card.style.opacity = '0';
-                                        card.style.transform = 'translateY(20px)';
-                                        setTimeout(() => {
-                                            card.style.display = 'none';
-                                        }, 300);
-                                    }
-                                });
-                            });
-                        });
-            
-                        // Contact Form Handling
-                        const contactForm = document.getElementById('contactForm');
-            
-                        contactForm.addEventListener('submit', function (e) {
-                            e.preventDefault();
-            
-                            // Get form values
-                            const name = document.getElementById('name').value;
-                            const email = document.getElementById('email').value;
-                            const subject = document.getElementById('subject').value;
-                            const message = document.getElementById('message').value;
-            
-                            // Validate form
-                            if (!name || !email || !subject || !message) {
-                                alert('Please fill all fields');
-                                return;
-                            }
-            
-                            // In a real scenario, you would send this data to a server
-                            // For now, just show an alert and reset the form
-                            alert('Thank you for your message! I will get back to you soon.');
-                            contactForm.reset();
-                        });
-            
-                        const heroCanvas = document.getElementById('hero-canvas');
-                        const heroCtx = heroCanvas.getContext('2d');
-                        const heroImage = new Image();
-                        heroImage.src = '/images/mine.png'; // Replace with your image path
-            
-                        heroCanvas.width = 540;
-                        heroCanvas.height = 500;
-            
-                        let scale = 0.15; // Reduced scale to make image appear smaller (15% of original size)
-                        let opacity = 0; // Starting opacity
-                        let x = heroCanvas.width / 2; // X position (center of canvas)
-                        let y = heroCanvas.height / 2; // Y position (center of canvas)
-            
-                        // Animation function with 3D effect
-                        function animateHeroImage() {
-                            heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height); // Clear the canvas
-            
-                            // Create background gradient (Glass effect)
-                            const gradient = heroCtx.createLinearGradient(0, 0, heroCanvas.width, heroCanvas.height);
-                            gradient.addColorStop(0, 'rgba(93, 92, 222, 0.6)'); // Lighter background
-                            gradient.addColorStop(1, 'rgba(135, 206, 235, 0.6)'); // Lighter background
-                            heroCtx.fillStyle = gradient;
-                            heroCtx.fillRect(0, 0, heroCanvas.width, heroCanvas.height);
-            
-                            // Set opacity for fade-in effect
-                            heroCtx.globalAlpha = opacity;
-            
-                            // Set shadow for 3D effect (glass-like shadow)
-                            heroCtx.shadowColor = 'rgba(0, 0, 0, 0.3)';
-                            heroCtx.shadowBlur = 15;
-                            heroCtx.shadowOffsetX = 10;
-                            heroCtx.shadowOffsetY = 10;
-            
-                            // Draw the image with scaling, no rotation
-                            heroCtx.save(); // Save the current canvas state
-                            heroCtx.translate(x, y); // Move to the center of the canvas
-                            heroCtx.translate(-heroImage.width * scale / 2, -heroImage.height * scale / 2); // Re-adjust position to keep it centered
-                            heroCtx.drawImage(heroImage, 0, 0, heroImage.width * scale, heroImage.height * scale); // Draw the image with scaling
-                            heroCtx.restore(); // Restore the original canvas state
-            
-                            // Add text
-                            heroCtx.font = 'bold 40px Poppins';
-                            heroCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
-                            heroCtx.textAlign = 'center';
-                            heroCtx.fillText('PORTFOLIO', heroCanvas.width / 2, 400);
-            
-                            heroCtx.font = '20px Poppins';
-                            heroCtx.fillText('Web Developer & UI/UX Designer', heroCanvas.width / 2, 440);
-            
-                            // Update opacity and scale for animation
-                            if (opacity < 1) opacity += 0.01;  // Fade-in effect
-                            if (scale < 0.2) scale += 0.005;  // Scale effect (stops at 20%)
-            
-                            // Loop animation
-                            requestAnimationFrame(animateHeroImage);
-                        }
-            
-                        // Start animation once the image is loaded
-                        heroImage.onload = function () {
-                            animateHeroImage();
-                        };
-            
-                        if (aboutCanvas) {
-                            aboutCanvas.width = 500;
-                            aboutCanvas.height = 400;
-            
-                            const aboutCanvas = document.getElementById('about-canvas');
-                            const aboutCtx = aboutCanvas.getContext('2d');
-                            const aboutImage = new Image();
-                            aboutImage.src = '/images/mine.png'; // Replace with the correct image path
-            
-                            aboutCanvas.width = 500;
-                            aboutCanvas.height = 400;
-            
-                            // Draw the image after it's loaded
-                            aboutImage.onload = function () {
-                                drawAboutImage();
-                            };
-            
-                            function drawAboutImage() {
-                                const centerX = 250;
-                                const centerY = 200;
-                                const radius = 150;
-            
-                                // Draw background
-                                aboutCtx.fillStyle = '#F0F8FF';
-                                aboutCtx.fillRect(0, 0, 500, 400);
-            
-                                // Draw the image inside the circle (avatar)
-                                aboutCtx.save(); // Save the current canvas state
-                                aboutCtx.beginPath();
-                                aboutCtx.arc(centerX, centerY, radius, 0, Math.PI * 2); // Create a circular frame
-                                aboutCtx.clip(); // Clip the image to the circle
-            
-                                // Draw the image (scaled to fit inside the circle)
-                                aboutCtx.drawImage(aboutImage, centerX - radius, centerY - radius, radius * 2, radius * 2);
-            
-                                aboutCtx.restore(); // Restore the original canvas state
-            
-                                // Add a border (circle with border radius) around the image
-                                aboutCtx.lineWidth = 10; // Set border width
-                                aboutCtx.strokeStyle = '#FFFFFF'; // Set border color
-                                aboutCtx.beginPath();
-                                aboutCtx.arc(centerX, centerY, radius, 0, Math.PI * 2); // Border circle
-                                aboutCtx.stroke();
-                            }
-            
-                            // Create project images
-                            const projectCanvases = document.querySelectorAll('.project-img');
-                            projectCanvases.forEach(canvas => {
-                                const ctx = canvas.getContext('2d');
-                                canvas.width = 400;
-                                canvas.height = 220;
-            
-                                const color = canvas.getAttribute('data-color') || '#5D5CDE';
-            
-                                // Create gradient background
-                                const gradient = ctx.createLinearGradient(0, 0, 400, 220);
-                                gradient.addColorStop(0, color);
-                                gradient.addColorStop(1, '#FFFFFF');
-            
-                                ctx.fillStyle = gradient;
-                                ctx.fillRect(0, 0, 400, 220);
-            
-                                // Add some shapes
-                                for (let i = 0; i < 5; i++) {
-                                    ctx.beginPath();
-                                    const size = Math.random() * 50 + 20;
-                                    const x = Math.random() * 400;
-                                    const y = Math.random() * 220;
-            
-                                    ctx.fillStyle = `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`;
-                                    ctx.fillRect(x, y, size, size);
-                                }
-                            });
-            
-                            // Create cert logos
-                            const certLogos = document.querySelectorAll('.cert-logo');
-                            certLogos.forEach(canvas => {
-                                const ctx = canvas.getContext('2d');
-                                canvas.width = 60;
-                                canvas.height = 60;
-            
-                                const color = canvas.getAttribute('data-color') || '#5D5CDE';
-            
-                                // Draw circle
-                                ctx.beginPath();
-                                ctx.arc(30, 30, 25, 0, Math.PI * 2);
-                                ctx.fillStyle = color;
-                                ctx.fill();
-            
-                                // Draw badge shape
-                                ctx.beginPath();
-                                ctx.moveTo(20, 20);
-                                ctx.lineTo(40, 20);
-                                ctx.lineTo(45, 30);
-                                ctx.lineTo(40, 40);
-                                ctx.lineTo(20, 40);
-                                ctx.lineTo(15, 30);
-                                ctx.closePath();
-                                ctx.fillStyle = '#FFFFFF';
-                                ctx.fill();
-            
-                                // Draw text
-                                ctx.font = 'bold 14px Poppins';
-                                ctx.fillStyle = color;
-                                ctx.textAlign = 'center';
-                                ctx.textBaseline = 'middle';
-                                ctx.fillText('CERT', 30, 30);
-                            });
-            
-                            // Animate skill bars on scroll
-                            const skillBars = document.querySelectorAll('.skill-progress');
-            
-                            function animateSkillBars() {
-                                skillBars.forEach(bar => {
-                                    const percentage = bar.parentElement.previousElementSibling.querySelector('.skill-percentage').textContent;
-                                    bar.style.width = '0';
-            
-                                    setTimeout(() => {
-                                        bar.style.width = percentage;
-                                    }, 300);
-                                });
-                            }
-            
-                            // Intersection Observer for Skill Bars
-                            const skillsSection = document.getElementById('skills');
-            
-                            if (skillsSection) {
-                                const observer = new IntersectionObserver((entries) => {
-                                    entries.forEach(entry => {
-                                        if (entry.isIntersecting) {
-                                            animateSkillBars();
-                                            observer.unobserve(entry.target);
-                                        }
-                                    });
-                                }, { threshold: 0.2 });
-            
-                                observer.observe(skillsSection);
-                            }
-            
-                            // Download CV functionality
-                            const downloadCvBtn = document.getElementById('download-cv');
-                            downloadCvBtn.addEventListener('click', function (e) {
-                                e.preventDefault();
-                                alert('In a real portfolio, this button would download your CV. Since file downloads are not supported in this environment, you would typically link to a hosted PDF file.');
-                            });
-                        }
-                        });
-                    </script>
-                </body>
-            </html>
+            });
 
-            
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navList.classList.remove('active');
+                    menuBtn.innerHTML = '<i class="ri-menu-line"></i>';
+                });
+            });
+
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Sticky Header
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // Typed text effect for hero subtitle
+            const typedTextElement = document.querySelector('.typed-text');
+            const textArray = ["Software Developer", "Web Developer", "UI/UX Designer"];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingDelay = 100;
+            let erasingDelay = 50;
+            let newTextDelay = 2000;
+
+            function type() {
+                const currentText = textArray[textIndex];
+
+                if (isDeleting) {
+                    typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingDelay = erasingDelay;
+                } else {
+                    typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingDelay = 100;
+                }
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    typingDelay = newTextDelay;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % textArray.length;
+                }
+
+                setTimeout(type, typingDelay);
+            }
+
+            setTimeout(type, 1000);
+
+            // Project Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Contact Form Handling
+            const contactForm = document.getElementById('contactForm');
+
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                if (!name || !email || !subject || !message) {
+                    alert('Please fill all fields');
+                    return;
+                }
+
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            });
+
+            // Animate skill bars on scroll
+            const skillBars = document.querySelectorAll('.skill-progress');
+
+            function animateSkillBars() {
+                skillBars.forEach(bar => {
+                    const percentage = bar.parentElement.previousElementSibling.querySelector('.skill-percentage').textContent;
+                    bar.style.width = '0';
+
+                    setTimeout(() => {
+                        bar.style.width = percentage;
+                    }, 300);
+                });
+            }
+
+            const skillsSection = document.getElementById('skills');
+
+            if (skillsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateSkillBars();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                observer.observe(skillsSection);
+            }
+
+            // Download CV functionality
+            const downloadCvBtn = document.getElementById('download-cv');
+            downloadCvBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('In a real portfolio, this button would download your CV. Since file downloads are not supported in this environment, you would typically link to a hosted PDF file.');
+            });
+        });
+    </script>
+</body>
+
+</html>
