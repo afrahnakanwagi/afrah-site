@@ -237,10 +237,13 @@
 
         .hero-img {
             width: 100%;
-            height: 750px;
-            border-radius: var(--border-radius);
+            max-width: 500px; /* Adjust as needed for size */
+            height: auto; /* Maintain aspect ratio */
+            aspect-ratio: 1/1; /* Ensure the image is square for a perfect circle */
+            border-radius: 40%; /* Makes the image circular */
             box-shadow: var(--shadow);
             animation: float 6s ease-in-out infinite;
+            object-fit: cover; /* Ensures the image fills the circular area */
         }
 
         @keyframes float {
@@ -330,8 +333,13 @@
 
         .about-img {
             width: 100%;
-            border-radius: var(--border-radius);
+            max-width: 500px; /* Adjust as needed for size */
+            height: auto; /* Maintain aspect ratio */
+            aspect-ratio: 1/1; /* Ensure the image is square for a perfect circle */
+            border-radius: 30%; /* Makes the image circular */
             box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+            object-fit: cover; /* Ensures the image fills the circular area */
         }
 
         .experience-box {
@@ -975,11 +983,11 @@
                     <a href="https://www.linkedin.com/in/afrah-nakanwagi-b829a5314/" class="social-link"><i
                             class="ri-linkedin-fill"></i></a>
                     <a href="https://x.com/naiyosh28792" class="social-link"><i class="ri-twitter-fill"></i></a>
-                    <a href="#" class="social-link"><i class="ri-dribbble-line"></i></a>
+                    <!-- <a href="#" class="social-link"><i class="ri-dribbble-line"></i></a> -->
                 </div>
             </div>
             <div class="hero-image fade-in-up delay-2">
-                <img src="images/mine.png" alt="Afrah Nakanwagi" class="hero-img">
+                <img src="images/my.jpg" alt="Afrah Nakanwagi" class="hero-img">
             </div>
         </div>
     </section>
@@ -994,7 +1002,7 @@
             </div>
             <div class="about-content">
                 <div class="about-image">
-                    <img src="images/mine.png" alt="Afrah Nakanwagi" class="about-img">
+                    <img src="images/my.jpg" alt="Afrah Nakanwagi" class="about-img">
                     <div class="experience-box">
                         <div class="experience-value">3 months</div>
                         <div class="experience-label">Experience</div>
@@ -1479,7 +1487,7 @@
                         <a href="https://www.linkedin.com/in/afrah-nakanwagi-b829a5314/" class="social-link"><i
                                 class="ri-linkedin-fill"></i></a>
                         <a href="https://x.com/naiyosh28792" class="social-link"><i class="ri-twitter-fill"></i></a>
-                        <a href="#" class="social-link"><i class="ri-dribbble-line"></i></a>
+                        <!-- <a href="#" class="social-link"><i class="ri-dribbble-line"></i></a> -->
                     </div>
                 </div>
 
