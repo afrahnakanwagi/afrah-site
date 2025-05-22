@@ -174,7 +174,7 @@
             font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom:  Maitland1.5rem;
+            margin-bottom: Maitland1.5rem;
         }
 
         .hero-subtitle {
@@ -237,19 +237,27 @@
 
         .hero-img {
             width: 100%;
-            max-width: 500px; /* Adjust as needed for size */
-            height: 480px; /* Maintain aspect ratio */
-            aspect-ratio: 1/1; /* Ensure the image is square for a perfect circle */
-            border-radius: 40%; /* Makes the image circular */
+            max-width: 500px;
+            /* Adjust as needed for size */
+            height: 480px;
+            /* Maintain aspect ratio */
+            aspect-ratio: 1/1;
+            /* Ensure the image is square for a perfect circle */
+            border-radius: 40%;
+            /* Makes the image circular */
             box-shadow: var(--shadow);
             /* animation: float 6s ease-in-out infinite; */
-            object-fit: cover; /* Ensures the image fills the circular area */
+            object-fit: cover;
+            /* Ensures the image fills the circular area */
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-20px);
             }
@@ -261,7 +269,8 @@
             bottom: 3rem;
             display: flex;
             gap: 1.5rem;
-            margin-top: -10rem; /* Adds spacing between buttons and social icons */
+            margin-top: -10rem;
+            /* Adds spacing between buttons and social icons */
         }
 
         .social-link {
@@ -321,26 +330,52 @@
             margin: 0 auto;
         }
 
-        .about-content {
+        /* About Section */
+        .about {
+            padding: 3rem 0;
+            background-color: var(--white);
+        }
+
+        .about-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 3rem;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .about-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 500px;
+            box-sizing: border-box;
+            transition: var(--transition);
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
         }
 
         .about-image {
             position: relative;
+            align-items: center;
         }
 
         .about-img {
             width: 100%;
-            max-width: 500px; /* Adjust as needed for size */
-            height: auto; /* Maintain aspect ratio */
-            aspect-ratio: 1/1; /* Ensure the image is square for a perfect circle */
-            border-radius: 30%; /* Makes the image circular */
+            max-width: 400px;
+            height: auto;
+            aspect-ratio: 1/1;
+            border-radius: 30%;
             box-shadow: var(--shadow);
-            /* animation: float 6s ease-in-out infinite; */
-            object-fit: cover; /* Ensures the image fills the circular area */
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
         }
 
         .experience-box {
@@ -352,20 +387,27 @@
             padding: 1rem;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            animation: pulse 2s ease-in-out infinite;
         }
 
         .experience-value {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
         }
 
         .experience-label {
-            font-size: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .about-divider {
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+            align-self: stretch;
         }
 
         .about-text h3 {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .about-text p {
@@ -377,8 +419,156 @@
         .about-info {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            margin-top: 2rem;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            text-decoration: none;
+            color: var(--dark-text);
+        }
+
+        .info-item:hover {
+            background-color: var(--alice-blue);
+            transform: translateX(5px);
+        }
+
+        .info-icon {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        .info-title {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .info-value {
+            color: var(--gray-text);
+        }
+
+        .about-achievements {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .achievement-item {
+            background-color: var(--alice-blue);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .achievement-item:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow);
+        }
+
+        .achievement-icon {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .achievement-label {
+            font-size: 0.9rem;
+            color: var(--gray-text);
+        }
+
+        .about-cta {
+            align-self: flex-start;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 1.5rem;
+            }
+
+            .about-card {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+
+            .about-divider {
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            }
+
+            .about-image {
+                order: -1;
+                display: flex;
+                justify-content: center;
+            }
+
+            .about-img {
+                max-width: 300px;
+            }
+
+            .about-achievements {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-card {
+                padding: 1rem;
+            }
+
+            .about-img {
+                max-width: 250px;
+            }
+
+            .about-info {
+                grid-template-columns: 1fr;
+            }
+
+            .about-achievements {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-box {
+                bottom: -10px;
+                right: -10px;
+                padding: 0.8rem;
+            }
+
+            .experience-value {
+                font-size: 1.5rem;
+            }
+
+            .experience-label {
+                font-size: 0.8rem;
+            }
         }
 
         .info-item {
@@ -403,25 +593,45 @@
 
         /* Skills Section */
         .skills {
-            padding: 8rem 0;
+            padding: 3rem 0;
             background-color: var(--alice-blue);
         }
 
         .skills-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 3rem;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .skills-content-card {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 600px;
+            box-sizing: border-box;
         }
 
         .skills-content h3 {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .skills-content p {
             color: var(--gray-text);
             line-height: 1.8;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-divider {
+            width: 3px;
+            background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+            align-self: stretch;
         }
 
         .skill-item {
@@ -457,10 +667,10 @@
         }
 
         .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 1rem;
-            margin-top: 2rem;
+            margin-top: 1.5rem;
         }
 
         .skill-tag {
@@ -470,6 +680,7 @@
             font-size: 0.9rem;
             color: var(--dark-text);
             box-shadow: var(--shadow);
+            text-align: center;
             transition: var(--transition);
         }
 
@@ -479,9 +690,46 @@
             transform: translateY(-3px);
         }
 
+        @media (max-width: 992px) {
+            .skills-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 1.5rem;
+            }
+
+            .skills-content-card {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+
+            .skills-divider {
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            }
+
+            .skill-tags {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .skills-content-card {
+                padding: 1rem;
+            }
+
+            .skill-item {
+                margin-bottom: 1rem;
+            }
+
+            .skill-tags {
+                gap: 0.8rem;
+            }
+        }
+
         /* Projects Section */
         .projects {
-            padding: 8rem 0;
+            padding: 3rem 0;
             background-color: var(--white);
         }
 
@@ -556,17 +804,17 @@
             margin-bottom: 1rem;
         }
 
-        .project-desc {
+        /* .project-desc {
             color: var(--gray-text);
             font-size: 0.9rem;
             margin-bottom: 1.5rem;
             line-height: 1.6;
-        }
+        } */
 
-        .project-links {
+        /* .project-links {
             display: flex;
             gap: 1rem;
-        }
+        } */
 
         .project-link {
             display: flex;
@@ -582,9 +830,94 @@
             color: #4a49c0;
         }
 
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 520px;
+            /* Set a minimum height for consistency */
+        }
+
+        .project-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-desc {
+            max-height: 4.8em;
+            /* Limit to 3 lines of text */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            /* Limit to 3 lines */
+            line-clamp: 3;
+            /* Standard property for compatibility */
+            -webkit-box-orient: vertical;
+            margin-bottom: 1rem;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .read-more-btn {
+            cursor: pointer;
+        }
+
+        /* Modal for Read More content */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-text);
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-desc {
+            color: var(--gray-text);
+            line-height: 1.6;
+        }
+
         /* Certifications Section */
         .certifications {
-            padding: 8rem 0;
+            padding: 3rem 0;
             background-color: var(--alice-blue);
         }
 
@@ -650,25 +983,46 @@
 
         /* Contact Section */
         .contact {
-            padding: 8rem 0;
+            padding: 3rem 0;
             background-color: var(--white);
         }
 
-        .contact-wrapper {
+        .contact-container {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 3rem;
+            align-items: stretch;
+            position: relative;
+        }
+
+        .contact-info-card,
+        .contact-form {
+            background-color: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 500px;
+            box-sizing: border-box;
         }
 
         .contact-info h3 {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .contact-info p {
             color: var(--gray-text);
             line-height: 1.8;
             margin-bottom: 2rem;
+        }
+
+        .contact-divider {
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, var(--primary-color), transparent);
+            align-self: stretch;
         }
 
         .contact-item {
@@ -702,15 +1056,73 @@
             color: var(--primary-color);
         }
 
-        .contact-form {
-            padding: 2rem;
-            background-color: var(--white);
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
         .form-group {
             margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            background-color: var(--white);
+            color: var(--dark-text);
+            font-size: 1rem;
+            transition: var(--transition);
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(93, 92, 222, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto;
+                gap: 1.5rem;
+            }
+
+            .contact-info-card,
+            .contact-form {
+                min-height: auto;
+                padding: 1.5rem;
+            }
+
+            .contact-divider {
+                width: 100%;
+                height: 2px;
+                background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+            }
+        }
+
+        @media (max-width: 576px) {
+
+            .contact-info-card,
+            .contact-form {
+                padding: 1rem;
+            }
+
+            .contact-item {
+                margin-bottom: 1rem;
+            }
+
+            .form-group {
+                margin-bottom: 1rem;
+            }
         }
 
         .form-label {
@@ -835,8 +1247,10 @@
         .social-icons {
             display: flex;
             gap: 1.5rem;
-            margin-top: 2rem; /* Adds spacing between buttons and social icons */
-            justify-content: flex-start; /* Aligns icons to the left (or use center if preferred) */
+            margin-top: 2rem;
+            /* Adds spacing between buttons and social icons */
+            justify-content: flex-start;
+            /* Aligns icons to the left (or use center if preferred) */
         }
 
         .social-link {
@@ -890,7 +1304,8 @@
 
             .social-icons {
                 margin-top: 5rem;
-                justify-content: center; /* Center icons on smaller screens */
+                justify-content: center;
+                /* Center icons on smaller screens */
             }
 
             .projects-grid {
@@ -954,6 +1369,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1033,54 +1449,79 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Learn more about my journey, skills, and passion for creating impactful digital solutions.</p>
+                <br><br>
+                <p class="section-subtitle">Discover my journey, skills, and passion for crafting innovative digital
+                    solutions.</p>
             </div>
-            <div class="about-content">
-                <div class="about-image">
+            <div class="about-container">
+                <div class="about-image about-card">
                     <img src="images/mypic.jpg" alt="Afrah Nakanwagi" class="about-img">
+                    <br><br><br>
+                    <div class="about-achievements">
+                        <div class="achievement-item">
+                            <i class="ri-trophy-line achievement-icon"></i>
+                            <div class="achievement-value">3+</div>
+                            <div class="achievement-label">Projects Completed</div>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="ri-star-line achievement-icon"></i>
+                            <div class="achievement-value">4</div>
+                            <div class="achievement-label">Certifications Earned</div>
+                        </div>
+                        <div class="achievement-item">
+                            <i class="ri-team-line achievement-icon"></i>
+                            <div class="achievement-value">2</div>
+                            <div class="achievement-label">Team Projects Led</div>
+                        </div>
+                    </div>
+
                     <div class="experience-box">
-                        <div class="experience-value">1 year</div>
-                        <div class="experience-label">Experience</div>
+                        <div class="experience-value">1</div>
+                        <div class="experience-label">Year of Experience</div>  
                     </div>
                 </div>
-                <div class="about-text">
-                    <h3>Who am I?</h3>
-                    <p>I'm a Software Developer, Web Developer, and UI/UX Designer with a passion for creating
-                        beautiful, functional, and user-centered digital experiences. I am always looking for new and
-                        innovative ways to bring my clients' visions to life.</p>
-                    <p>I develop websites and applications with a focus on responsive design, accessibility, and
-                        cutting-edge technologies. Behind every project lies the perfect blend of creativity and
-                        technical expertise to ensure an exceptional user experience.</p>
+                <div class="about-divider"></div>
+                <div class="about-text about-card">
+                    <h3>Meet Afrah Nakanwagi</h3>
+                    <p>I'm a Software Developer and UI/UX Designer based in Kampala, Uganda, with a passion for building
+                        user-centric, responsive, and innovative digital solutions. With over a year of experience, I
+                        specialize in web development, Python backend development, and creating intuitive interfaces
+                        that blend creativity with functionality.</p>
+                    <p>My approach combines technical expertise with a keen eye for design, ensuring every project
+                        delivers seamless performance and exceptional user experiences. Let’s bring your ideas to life!
+                    </p>
                     <div class="about-info">
-                        <div class="info-item">
-                            <div class="info-icon"><i class="ri-user-3-line"></i></div>
-                            <div>
-                                <h4 class="info-title">Name</h4>
-                                <p class="info-value">Afrah Nakanwagi</p>
-                            </div>
-                        </div>
-                        <div class="info-item">
+                        <a href="mailto:afrahnakanwagi@gmail.com" class="info-item">
                             <div class="info-icon"><i class="ri-mail-line"></i></div>
                             <div>
                                 <h4 class="info-title">Email</h4>
                                 <p class="info-value">afrahnakanwagi@gmail.com</p>
                             </div>
-                        </div>
-                        <div class="info-item">
+                        </a>
+                        <a href="tel:+256768917360" class="info-item">
                             <div class="info-icon"><i class="ri-phone-line"></i></div>
                             <div>
                                 <h4 class="info-title">Phone</h4>
                                 <p class="info-value">+256 768917360</p>
                             </div>
-                        </div>
+                        </a>
                         <div class="info-item">
                             <div class="info-icon"><i class="ri-map-pin-line"></i></div>
                             <div>
                                 <h4 class="info-title">Location</h4>
-                                <p class="info-value">Kampala - Uganda</p>
+                                <p class="info-value">Kampala, Uganda</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-icon"><i class="ri-briefcase-line"></i></div>
+                            <div>
+                                <h4 class="info-title">Freelance</h4>
+                                <p class="info-value">Available</p>
                             </div>
                         </div>
                     </div>
+                    <a href="https://docs.google.com/document/d/1vRQiuro40e5aU4u9NOvvD-NRbNv61jiA/edit?usp=sharing&ouid=103588101516443296160&rtpof=true&sd=true"
+                        class="primary-btn about-cta">Download Resume <i class="ri-download-line"></i></a>
                 </div>
             </div>
         </div>
@@ -1091,10 +1532,11 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">My Skills</h2>
+                <br><br>
                 <p class="section-subtitle">Mastering Tools to Build Impactful Solutions.</p>
             </div>
             <div class="skills-container">
-                <div class="skills-content">
+                <div class="skills-content skills-content-card">
                     <h3>Professional Skills</h3>
                     <p>I have acquired a wide range of skills throughout my professional journey. Below are the key
                         areas where I excel, showcasing my expertise in various technologies and tools.</p>
@@ -1180,7 +1622,9 @@
                     </div>
                 </div>
 
-                <div class="skills-content">
+                <hr class="skills-divider">
+
+                <div class="skills-content skills-content-card">
                     <h3>Technical Skills</h3>
                     <p>Beyond my core competencies, I've also developed a broad set of technical skills that enable me
                         to tackle diverse challenges and deliver comprehensive solutions.</p>
@@ -1212,6 +1656,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">My Projects</h2>
+                <br><br>
                 <p class="section-subtitle">Crafting Solutions That Make a Difference.</p>
             </div>
 
@@ -1228,18 +1673,14 @@
                     <div class="project-content">
                         <span class="project-tag">Web Development</span>
                         <h3 class="project-title">Grocery Inventory Management</h3>
-                        <p class="project-desc">I developed Happy Hoe Grocery Inventory Management, a web application
-                            designed to manage inventory and sales for grocery stores. Built with Django and Python for
-                            the backend, the system efficiently tracks stock levels, product details, and sales
-                            transactions. The frontend, created using HTML and CSS, offers an intuitive interface for
-                            store owners to monitor inventory, update stock, and generate sales reports in real time.
-                            Over a six-week development period, I focused on ensuring seamless functionality, optimizing
-                            performance, and enhancing usability to help businesses streamline their operations and
-                            improve efficiency.</p>
+                        <p class="project-desc"
+                            data-full-text="I developed Happy Hoe Grocery Inventory Management, a web application designed to manage inventory and sales for grocery stores. Built with Django and Python for the backend, the system efficiently tracks stock levels, product details, and sales transactions. The frontend, created using HTML and CSS, offers an intuitive interface for store owners to monitor inventory, update stock, and generate sales reports in real time. Over a six-week development period, I focused on ensuring seamless functionality, optimizing performance, and enhancing usability to help businesses streamline their operations and improve efficiency.">
+                            I developed Happy Hoe Grocery Inventory Management, a web application designed to manage
+                            inventory and sales for grocery stores...</p>
                         <div class="project-links">
                             <a href="#" class="project-link" target="_blank"><i class="ri-eye-line"></i> Live Demo</a>
-                            <a href="#" class="project-link" target="_blank"><i class="ri-github-line"></i> Source
-                                Code</a>
+                            <button class="read-more-btn secondary-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1249,37 +1690,32 @@
                     <div class="project-content">
                         <span class="project-tag">Xtreative Market</span>
                         <h3 class="project-title">Xtreative Market</h3>
-                        <p class="project-desc">Role: Team Lead & Backend Developer
-                            Team: Collaborated with a team of 7 talented ladies
-                            I led the development of Xtreative, a dynamic e-commerce platform under Enigma Kreative Ltd designed to bridge the gap between local creatives, such as artisans and home-living product makers, and their customers. The platform empowers vendors to showcase their products, apply for funding, and grow their businesses online.
-                            Key features include:
-                            •	Xtreative Vendor & Customer Mobile Applications
-                            •	Xtreative Web Application
-                            </p>
+                        <p class="project-desc"
+                            data-full-text="Role: Team Lead & Backend Developer. Team: Collaborated with a team of 7 talented ladies. I led the development of Xtreative, a dynamic e-commerce platform under Enigma Kreative Ltd designed to bridge the gap between local creatives, such as artisans and home-living product makers, and their customers. The platform empowers vendors to showcase their products, apply for funding, and grow their businesses online. Key features include: • Xtreative Vendor & Customer Mobile Applications • Xtreative Web Application">
+                            Role: Team Lead & Backend Developer. I led the development of Xtreative, a dynamic
+                            e-commerce platform...</p>
                         <div class="project-links">
-                            <a href="https://admin-xtreative-wb.onrender.com/" class="project-link" target="_blank"><i class="ri-eye-line"></i> Live Demo</a>
-                            <a href="#" class="project-link" target="_blank"><i class="ri-github-line"></i> Source
-                                Code</a>
+                            <a href="https://admin-xtreative-wb.onrender.com/" class="project-link" target="_blank"><i
+                                    class="ri-eye-line"></i> Live Demo</a>
+                            <button class="read-more-btn secondary-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></button>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="project-card" data-category="ui">
                     <img src="images/agro.png" alt="Agro-Tourism Website" class="project-img">
                     <div class="project-content">
                         <span class="project-tag">UI/UX Design</span>
                         <h3 class="project-title">Agro-Tourism Website</h3>
-                        <p class="project-desc">I designed the service pages for the Agro-Tourism website of Mukisa
-                            Enterprises using Figma, creating an intuitive and visually appealing layout. My design
-                            focused on highlighting key offerings such as farm tours, hands-on agricultural experiences,
-                            and sustainable farming education. I ensured a clean, user-friendly interface that
-                            effectively communicates Mukisa Enterprises' mission while maintaining a professional and
-                            engaging aesthetic.</p>
+                        <p class="project-desc"
+                            data-full-text="I designed the service pages for the Agro-Tourism website of Mukisa Enterprises using Figma, creating an intuitive and visually appealing layout. My design focused on highlighting key offerings such as farm tours, hands-on agricultural experiences, and sustainable farming education. I ensured a clean, user-friendly interface that effectively communicates Mukisa Enterprises' mission while maintaining a professional and engaging aesthetic.">
+                            I designed the service pages for the Agro-Tourism website of Mukisa Enterprises using
+                            Figma...</p>
                         <div class="project-links">
                             <a href="#" class="project-link" target="_blank"><i class="ri-eye-line"></i> Live Demo</a>
-                            <a href="#" class="project-link" target="_blank"><i class="ri-github-line"></i> Source
-                                Code</a>
+                            <button class="read-more-btn secondary-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1289,19 +1725,15 @@
                     <div class="project-content">
                         <span class="project-tag">App Development</span>
                         <h3 class="project-title">Recipe Finder App</h3>
-                        <p class="project-desc">I built a Recipe Finder App using React.js, designed to help users
-                            discover and explore various recipes effortlessly. The app features a dynamic search
-                            functionality that allows users to find recipes based on ingredients, cuisine, or meal type.
-                            With a clean and responsive UI, the app ensures a seamless user experience while fetching
-                            and displaying recipes efficiently. By leveraging React’s component-based architecture, I
-                            optimized performance and ensured smooth navigation. This project enhanced my skills in
-                            frontend development, API integration, and state management while providing a practical
-                            solution for cooking enthusiasts.</p>
+                        <p class="project-desc"
+                            data-full-text="I built a Recipe Finder App using React.js, designed to help users discover and explore various recipes effortlessly. The app features a dynamic search functionality that allows users to find recipes based on ingredients, cuisine, or meal type. With a clean and responsive UI, the app ensures a seamless user experience while fetching and displaying recipes efficiently. By leveraging React’s component-based architecture, I optimized performance and ensured smooth navigation. This project enhanced my skills in frontend development, API integration, and state management while providing a practical solution for cooking enthusiasts.">
+                            I built a Recipe Finder App using React.js, designed to help users discover and explore...
+                        </p>
                         <div class="project-links">
                             <a href="https://afrahrecipe.netlify.app/" class="project-link" target="_blank"><i
                                     class="ri-eye-line"></i> Live Demo</a>
-                            <a href="#" class="project-link" target="_blank"><i class="ri-github-line"></i> Source
-                                Code</a>
+                            <button class="read-more-btn secondary-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1311,19 +1743,14 @@
                     <div class="project-content">
                         <span class="project-tag">Web App</span>
                         <h3 class="project-title">Movie App</h3>
-                        <p class="project-desc">I developed a Movie App using React.js to practice and enhance my skills
-                            in React development. This app allows users to browse movies and watch trailers, providing
-                            an interactive and engaging experience. By integrating a movie API, I implemented real-time
-                            movie data retrieval, displaying details such as titles, ratings, and descriptions. The app
-                            features a clean and responsive UI, ensuring smooth navigation and seamless trailer
-                            playback. Through this project, I improved my understanding of React components, state
-                            management, API integration, and UI design, further strengthening my frontend development
-                            skills.</p>
+                        <p class="project-desc"
+                            data-full-text="I developed a Movie App using React.js to practice and enhance my skills in React development. This app allows users to browse movies and watch trailers, providing an interactive and engaging experience. By integrating a movie API, I implemented real-time movie data retrieval, displaying details such as titles, ratings, and descriptions. The app features a clean and responsive UI, ensuring smooth navigation and seamless trailer playback. Through this project, I improved my understanding of React components, state management, API integration, and UI design, further strengthening my frontend development skills.">
+                            I developed a Movie App using React.js to practice and enhance my skills...</p>
                         <div class="project-links">
                             <a href="https://moiemovies.netlify.app/" class="project-link" target="_blank"><i
                                     class="ri-eye-line"></i> Live Demo</a>
-                            <a href="#" class="project-link" target="_blank"><i class="ri-github-line"></i> Source
-                                Code</a>
+                            <button class="read-more-btn secondary-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1333,19 +1760,14 @@
                     <div class="project-content">
                         <span class="project-tag">WordPress</span>
                         <h3 class="project-title">Beauty Glam Website</h3>
-                        <p class="project-desc">I created a Beauty Glam Website using WordPress, designed to showcase
-                            beauty products, services, and tips. The website features an elegant and modern layout,
-                            allowing users to explore a variety of beauty offerings, from skincare routines to makeup
-                            tutorials. I customized the site with a responsive design to ensure optimal viewing on all
-                            devices. Through WordPress, I utilized various plugins to enhance functionality, including
-                            e-commerce features for online product sales and easy-to-manage content updates. This
-                            project allowed me to gain hands-on experience with WordPress themes, plugins, and
-                            customization, while delivering a visually appealing and user-friendly website.</p>
+                        <p class="project-desc"
+                            data-full-text="I created a Beauty Glam Website using WordPress, designed to showcase beauty products, services, and tips. The website features an elegant and modern layout, allowing users to explore a variety of beauty offerings, from skincare routines to makeup tutorials. I customized the site with a responsive design to ensure optimal viewing on all devices. Through WordPress, I utilized various plugins to enhance functionality, including e-commerce features for online product sales and easy-to-manage content updates. This project allowed me to gain hands-on experience with WordPress themes, plugins, and customization, while delivering a visually appealing and user-friendly website.">
+                            I created a Beauty Glam Website using WordPress, designed to showcase beauty products...</p>
                         <div class="project-links">
                             <a href="https://www.linkedin.com/feed/update/urn:li:activity:7248361722690846720/"
                                 class="project-link" target="_blank"><i class="ri-eye-line"></i> Live Demo</a>
-                            <a href="#" class="project-link" target="_blank"><i class="ri-github-line"></i> Source
-                                Code</a>
+                            <button class="read-more-btn secondary-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1355,18 +1777,14 @@
                     <div class="project-content">
                         <span class="project-tag">WordPress</span>
                         <h3 class="project-title">Website for Realtech</h3>
-                        <p class="project-desc">I created a website for a company selling laptops and electronics using
-                            WordPress. The site features a modern, user-friendly design with product categories,
-                            detailed descriptions, and pricing for various electronics. I integrated an e-commerce
-                            system to allow customers to browse, view products, and make purchases. The site is fully
-                            responsive, ensuring optimal performance on both desktop and mobile devices. By customizing
-                            WordPress themes and using relevant plugins, I delivered an engaging, functional website
-                            that enhances the online shopping experience.</p>
+                        <p class="project-desc"
+                            data-full-text="I created a website for a company selling laptops and electronics using WordPress. The site features a modern, user-friendly design with product categories, detailed descriptions, and pricing for various electronics. I integrated an e-commerce system to allow customers to browse, view products, and make purchases. The site is fully responsive, ensuring optimal performance on both desktop and mobile devices. By customizing WordPress themes and using relevant plugins, I delivered an engaging, functional website that enhances the online shopping experience.">
+                            I created a website for a company selling laptops and electronics using WordPress...</p>
                         <div class="project-links">
                             <a href="https://www.linkedin.com/feed/update/urn:li:activity:7285761399258030081/"
                                 class="project-link" target="_blank"><i class="ri-eye-line"></i> Live Demo</a>
-                            <a href="#" class="project-link" target="_blank"><i class="ri-github-line"></i> Source
-                                Code</a>
+                            <button class="read-more-btn secondary-btn">Read More <i
+                                    class="ri-arrow-right-line"></i></button>
                         </div>
                     </div>
                 </div>
@@ -1379,6 +1797,7 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">My Certifications</h2>
+                <br><br>
                 <p class="section-subtitle">My professional certifications and achievements</p>
             </div>
 
@@ -1427,16 +1846,13 @@
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Contact Me</h2>
+                <br><br>
                 <p class="section-subtitle">Let's collaborate on your next project</p>
             </div>
-
-            <div class="contact-wrapper">
-                <div class="contact-info">
-                    <h2>Let's Connect
-                        Reach out to discuss projects, opportunities, or just to say hi!</h2>
-                    <!-- <p>Let's Connect
-                        Reach out to discuss projects, opportunities, or just to say hi!</p> -->
-
+            <div class="contact-container">
+                <div class="contact-info contact-info-card">
+                    <h3>Let's Connect</h3>
+                    <p>Reach out to discuss projects, opportunities, or just to say hi!</p>
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="ri-map-pin-line"></i>
@@ -1446,7 +1862,6 @@
                             <p>Kampala - Uganda</p>
                         </div>
                     </div>
-
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="ri-mail-line"></i>
@@ -1456,7 +1871,6 @@
                             <a href="mailto:afrahnakanwagi@gmail.com">afrahnakanwagi@gmail.com</a>
                         </div>
                     </div>
-
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="ri-phone-line"></i>
@@ -1466,7 +1880,6 @@
                             <a href="tel:+256768917360">+256 768917360</a>
                         </div>
                     </div>
-
                     <div class="contact-item">
                         <div class="contact-icon">
                             <i class="ri-time-line"></i>
@@ -1477,29 +1890,25 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="contact-divider"></div>
                 <div class="contact-form">
                     <form id="contactForm">
                         <div class="form-group">
                             <label for="name" class="form-label">Name</label>
                             <input type="text" id="name" class="form-control" placeholder="Your Name" required>
                         </div>
-
                         <div class="form-group">
                             <label for="email" class="form-label">Email</label>
                             <input type="email" id="email" class="form-control" placeholder="Your Email" required>
                         </div>
-
                         <div class="form-group">
                             <label for="subject" class="form-label">Subject</label>
                             <input type="text" id="subject" class="form-control" placeholder="Subject" required>
                         </div>
-
                         <div class="form-group">
                             <label for="message" class="form-label">Message</label>
                             <textarea id="message" class="form-control" placeholder="Your Message" required></textarea>
                         </div>
-
                         <button type="submit" class="primary-btn">Send Message <i
                                 class="ri-send-plane-line"></i></button>
                     </form>
@@ -1731,6 +2140,51 @@
             downloadCvBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 alert('In a real portfolio, this button would download your CV. Since file downloads are not supported in this environment, you would typically link to a hosted PDF file.');
+            });
+
+            // Read More Modal Functionality
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const projectCard = this.closest('.project-card');
+                    const fullText = projectCard.querySelector('.project-desc').getAttribute('data-full-text');
+                    const projectTitle = projectCard.querySelector('.project-title').textContent;
+
+                    // Create modal
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal');
+                    modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close">×</button>
+                        <h3 class="modal-title">${projectTitle}</h3>
+                        <p class="modal-desc">${fullText}</p>
+                    </div>
+                `;
+
+                    document.body.appendChild(modal);
+                    modal.style.display = 'flex';
+
+                    // Close modal
+                    const closeButton = modal.querySelector('.modal-close');
+                    closeButton.addEventListener('click', () => {
+                        modal.remove();
+                    });
+
+                    // Close modal on outside click
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.remove();
+                        }
+                    });
+
+                    // Close modal on Escape key press
+                    document.addEventListener('keydown', function handler(e) {
+                        if (e.key === 'Escape') {
+                            modal.remove();
+                            document.removeEventListener('keydown', handler);
+                        }
+                    });
+                });
             });
         });
     </script>
