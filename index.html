@@ -8,6 +8,93 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init("A9PP_17kmmDngJ3fG");
+            console.log('EmailJS initialized');
+        })();
+
+        // Define the notification function first
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            const notificationMessage = document.getElementById('notification-message');
+            
+            // Set message and type
+            notificationMessage.textContent = message;
+            notification.className = `notification ${type}`;
+            
+            // Add icon based on type
+            const icon = notification.querySelector('.notification-icon');
+            icon.className = type === 'success' ? 
+                'ri-check-line notification-icon' : 
+                'ri-close-line notification-icon';
+            
+            // Show notification
+            notification.classList.add('show');
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+
+        // Wait for the DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactForm = document.getElementById('contactForm');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Get form values
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const subject = document.getElementById('subject').value;
+                    const message = document.getElementById('message').value;
+
+                    // Update button state
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    submitBtn.innerHTML = 'Sending... <i class="ri-loader-4-line"></i>';
+                    submitBtn.disabled = true;
+
+                    // Match exactly with your template variables
+                    const templateParams = {
+                        name: name,
+                        title: subject,
+                        email: email,
+                        message: message
+                    };
+
+                    // Log the parameters
+                    console.log('Template parameters:', templateParams);
+
+                    // Send the email
+                    emailjs.send('service_7fh4bfd', 'template_rub879s', templateParams)
+                        .then(function(response) {
+                            console.log('SUCCESS!', response);
+                            showNotification('Message sent successfully!', 'success');
+                            contactForm.reset();
+                        })
+                        .catch(function(error) {
+                            console.error('FAILED...', error);
+                            console.error('Error details:', {
+                                status: error.status,
+                                text: error.text,
+                                message: error.message
+                            });
+                            showNotification('Failed to send message: ' + error.text, 'error');
+                        })
+                        .finally(function() {
+                            submitBtn.innerHTML = 'Send Message <i class="ri-send-plane-line"></i>';
+                            submitBtn.disabled = false;
+                        });
+                });
+            }
+        });
+    </script>
+
     <style>
         :root {
             --primary-color: #5D5CDE;
@@ -54,7 +141,6 @@
             padding: 0 2rem;
         }
 
-        /* Header Styles */
         header {
             position: fixed;
             top: 0;
@@ -128,7 +214,6 @@
             cursor: pointer;
         }
 
-        /* Hero Section */
         .hero {
             position: relative;
             min-height: 100vh;
@@ -174,7 +259,7 @@
             font-size: 3.5rem;
             font-weight: 700;
             line-height: 1.2;
-            margin-bottom: Maitland1.5rem;
+            margin-bottom: 1.5rem;
         }
 
         .hero-subtitle {
@@ -238,26 +323,17 @@
         .hero-img {
             width: 100%;
             max-width: 500px;
-            /* Adjust as needed for size */
             height: 480px;
-            /* Maintain aspect ratio */
             aspect-ratio: 1/1;
-            /* Ensure the image is square for a perfect circle */
             border-radius: 40%;
-            /* Makes the image circular */
             box-shadow: var(--shadow);
-            /* animation: float 6s ease-in-out infinite; */
             object-fit: cover;
-            /* Ensures the image fills the circular area */
         }
 
         @keyframes float {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-20px);
             }
@@ -270,7 +346,6 @@
             display: flex;
             gap: 1.5rem;
             margin-top: -10rem;
-            /* Adds spacing between buttons and social icons */
         }
 
         .social-link {
@@ -293,7 +368,6 @@
             transform: translateY(-5px);
         }
 
-        /* About Section */
         .about {
             padding: 8rem 0;
             background-color: var(--white);
@@ -328,12 +402,6 @@
             font-size: 1.1rem;
             max-width: 600px;
             margin: 0 auto;
-        }
-
-        /* About Section */
-        .about {
-            padding: 3rem 0;
-            background-color: var(--white);
         }
 
         .about-container {
@@ -495,12 +563,9 @@
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
+            0%, 100% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.05);
             }
@@ -571,27 +636,6 @@
             }
         }
 
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .info-icon {
-            font-size: 1.2rem;
-            color: var(--primary-color);
-        }
-
-        .info-title {
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-
-        .info-value {
-            color: var(--gray-text);
-        }
-
-        /* Skills Section */
         .skills {
             padding: 3rem 0;
             background-color: var(--alice-blue);
@@ -677,7 +721,7 @@
             padding: 0.5rem 1.5rem;
             background-color: var(--white);
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.9rem !important;
             color: var(--dark-text);
             box-shadow: var(--shadow);
             text-align: center;
@@ -727,7 +771,6 @@
             }
         }
 
-        /* Projects Section */
         .projects {
             padding: 3rem 0;
             background-color: var(--white);
@@ -804,17 +847,35 @@
             margin-bottom: 1rem;
         }
 
-        /* .project-desc {
-            color: var(--gray-text);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        } */
-
-        /* .project-links {
+        .project-card {
             display: flex;
-            gap: 1rem;
-        } */
+            flex-direction: column;
+            min-height: 520px;
+        }
+
+        .project-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .project-desc {
+            max-height: 4.8em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            line-clamp: 3;
+            -webkit-box-orient: vertical;
+            margin-bottom: 1rem;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
         .project-link {
             display: flex;
@@ -830,45 +891,10 @@
             color: #4a49c0;
         }
 
-        .project-card {
-            display: flex;
-            flex-direction: column;
-            min-height: 520px;
-            /* Set a minimum height for consistency */
-        }
-
-        .project-content {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .project-desc {
-            max-height: 4.8em;
-            /* Limit to 3 lines of text */
-            overflow: hidden;
-            text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 3;
-            /* Limit to 3 lines */
-            line-clamp: 3;
-            /* Standard property for compatibility */
-            -webkit-box-orient: vertical;
-            margin-bottom: 1rem;
-        }
-
-        .project-links {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
         .read-more-btn {
             cursor: pointer;
         }
 
-        /* Modal for Read More content */
         .modal {
             display: none;
             position: fixed;
@@ -915,7 +941,6 @@
             line-height: 1.6;
         }
 
-        /* Certifications Section */
         .certifications {
             padding: 3rem 0;
             background-color: var(--alice-blue);
@@ -981,7 +1006,6 @@
             color: #4a49c0;
         }
 
-        /* Contact Section */
         .contact {
             padding: 3rem 0;
             background-color: var(--white);
@@ -1089,6 +1113,39 @@
             resize: vertical;
         }
 
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: #5D5CDE;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 2000;
+            transform: translateX(150%);
+            transition: transform 0.5s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notification.show {
+            transform: translateX(0);
+        }
+
+        .notification.success {
+            background-color: #4CAF50;
+        }
+
+        .notification.error {
+            background-color: #F44336;
+        }
+
+        .notification-icon {
+            font-size: 1.5rem;
+        }
+
         @media (max-width: 992px) {
             .contact-container {
                 grid-template-columns: 1fr;
@@ -1110,7 +1167,6 @@
         }
 
         @media (max-width: 576px) {
-
             .contact-info-card,
             .contact-form {
                 padding: 1rem;
@@ -1125,36 +1181,6 @@
             }
         }
 
-        .form-label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1.2rem;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            background-color: var(--white);
-            color: var(--dark-text);
-            font-size: 1rem;
-            transition: var(--transition);
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .form-control:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(93, 92, 222, 0.2);
-        }
-
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-
-        /* Footer */
         .footer {
             background-color: var(--alice-blue);
             padding: 4rem 0 2rem;
@@ -1222,7 +1248,6 @@
             font-size: 0.9rem;
         }
 
-        /* Responsive Styles */
         @media (max-width: 992px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -1242,35 +1267,6 @@
             .footer-content {
                 grid-template-columns: 1fr 1fr;
             }
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            /* Adds spacing between buttons and social icons */
-            justify-content: flex-start;
-            /* Aligns icons to the left (or use center if preferred) */
-        }
-
-        .social-link {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background-color: var(--white);
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            transition: var(--transition);
-            box-shadow: var(--shadow);
-        }
-
-        .social-link:hover {
-            background-color: var(--primary-color);
-            color: var(--light-text);
-            transform: translateY(-5px);
         }
 
         @media (max-width: 768px) {
@@ -1293,19 +1289,9 @@
                 justify-content: center;
             }
 
-            /* .social-icons {
-                position: static;
-                justify-content: center;
-                margin-top: 2rem;
-            } */
-            .cta-buttons {
-                justify-content: center;
-            }
-
             .social-icons {
                 margin-top: 5rem;
                 justify-content: center;
-                /* Center icons on smaller screens */
             }
 
             .projects-grid {
@@ -1363,13 +1349,11 @@
             }
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(20px);
             }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1399,7 +1383,6 @@
 </head>
 
 <body>
-    <!-- Header -->
     <header>
         <div class="container header-container">
             <a href="images/minelogo.jpeg" class="logo">Afrah Nakanwagi</a>
@@ -1417,7 +1400,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="hero">
         <div class="container hero-content">
             <div class="hero-text fade-in-up">
@@ -1430,13 +1412,6 @@
                     <a href="https://docs.google.com/document/d/1vRQiuro40e5aU4u9NOvvD-NRbNv61jiA/edit?usp=sharing&ouid=103588101516443296160&rtpof=true&sd=true"
                         class="secondary-btn" id="download-cv">Download CV <i class="ri-download-line"></i></a>
                 </div>
-                <!-- <div class="social-icons">
-                    <a href="https://github.com/afrahnakanwagi" class="social-link"><i class="ri-github-fill"></i></a>
-                    <a href="https://www.linkedin.com/in/afrah-nakanwagi-b829a5314/" class="social-link"><i
-                            class="ri-linkedin-fill"></i></a>
-                    <a href="https://x.com/naiyosh28792" class="social-link"><i class="ri-twitter-fill"></i></a>
-                    <a href="#" class="social-link"><i class="ri-dribbble-line"></i></a>
-                </div> -->
             </div>
             <div class="hero-image fade-in-up delay-2">
                 <img src="images/mypic.jpg" alt="Afrah Nakanwagi" class="hero-img">
@@ -1444,7 +1419,6 @@
         </div>
     </section>
 
-    <!-- About Section -->
     <section class="about" id="about">
         <div class="container">
             <div class="section-header">
@@ -1474,10 +1448,9 @@
                             <div class="achievement-label">Team Projects Led</div>
                         </div>
                     </div>
-
                     <div class="experience-box">
                         <div class="experience-value">1</div>
-                        <div class="experience-label">Year of Experience</div>  
+                        <div class="experience-label">Year of Experience</div>
                     </div>
                 </div>
                 <div class="about-divider"></div>
@@ -1488,7 +1461,7 @@
                         specialize in web development, Python backend development, and creating intuitive interfaces
                         that blend creativity with functionality.</p>
                     <p>My approach combines technical expertise with a keen eye for design, ensuring every project
-                        delivers seamless performance and exceptional user experiences. Let’s bring your ideas to life!
+                        delivers seamless performance and exceptional user experiences. Let's bring your ideas to life!
                     </p>
                     <div class="about-info">
                         <a href="mailto:afrahnakanwagi@gmail.com" class="info-item">
@@ -1527,7 +1500,6 @@
         </div>
     </section>
 
-    <!-- Skills Section -->
     <section class="skills" id="skills">
         <div class="container">
             <div class="section-header">
@@ -1540,7 +1512,6 @@
                     <h3>Professional Skills</h3>
                     <p>I have acquired a wide range of skills throughout my professional journey. Below are the key
                         areas where I excel, showcasing my expertise in various technologies and tools.</p>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">Web Development</h4>
@@ -1550,7 +1521,6 @@
                             <div class="skill-progress" style="width: 95%;"></div>
                         </div>
                     </div>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">UI/UX Design</h4>
@@ -1560,7 +1530,6 @@
                             <div class="skill-progress" style="width: 90%;"></div>
                         </div>
                     </div>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">HTML</h4>
@@ -1570,7 +1539,6 @@
                             <div class="skill-progress" style="width: 85%;"></div>
                         </div>
                     </div>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">CSS</h4>
@@ -1580,7 +1548,6 @@
                             <div class="skill-progress" style="width: 85%;"></div>
                         </div>
                     </div>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">Python</h4>
@@ -1590,7 +1557,6 @@
                             <div class="skill-progress" style="width: 65%;"></div>
                         </div>
                     </div>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">WordPress</h4>
@@ -1600,7 +1566,6 @@
                             <div class="skill-progress" style="width: 85%;"></div>
                         </div>
                     </div>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">Django</h4>
@@ -1610,7 +1575,6 @@
                             <div class="skill-progress" style="width: 85%;"></div>
                         </div>
                     </div>
-
                     <div class="skill-item">
                         <div class="skill-info">
                             <h4 class="skill-name">React JS Basics</h4>
@@ -1621,14 +1585,11 @@
                         </div>
                     </div>
                 </div>
-
                 <hr class="skills-divider">
-
                 <div class="skills-content skills-content-card">
                     <h3>Technical Skills</h3>
                     <p>Beyond my core competencies, I've also developed a broad set of technical skills that enable me
                         to tackle diverse challenges and deliver comprehensive solutions.</p>
-
                     <div class="skill-tags">
                         <span class="skill-tag">HTML5</span>
                         <span class="skill-tag">CSS3</span>
@@ -1651,7 +1612,6 @@
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section class="projects" id="projects">
         <div class="container">
             <div class="section-header">
@@ -1659,14 +1619,12 @@
                 <br><br>
                 <p class="section-subtitle">Crafting Solutions That Make a Difference.</p>
             </div>
-
             <div class="projects-filter">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="web">Web Development</button>
                 <button class="filter-btn" data-filter="app">WordPress</button>
                 <button class="filter-btn" data-filter="ui">UI/UX Design</button>
             </div>
-
             <div class="projects-grid">
                 <div class="project-card" data-category="web">
                     <img src="images/grocery.png" alt="Grocery Inventory Management" class="project-img">
@@ -1684,7 +1642,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card" data-category="web and mobile">
                     <img src="images/xtreativemarket.png" alt="Xtreative Market" class="project-img">
                     <div class="project-content">
@@ -1702,7 +1659,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card" data-category="ui">
                     <img src="images/agro.png" alt="Agro-Tourism Website" class="project-img">
                     <div class="project-content">
@@ -1719,14 +1675,13 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card" data-category="app">
                     <img src="images/recipe.png" alt="Recipe Finder App" class="project-img">
                     <div class="project-content">
                         <span class="project-tag">App Development</span>
                         <h3 class="project-title">Recipe Finder App</h3>
                         <p class="project-desc"
-                            data-full-text="I built a Recipe Finder App using React.js, designed to help users discover and explore various recipes effortlessly. The app features a dynamic search functionality that allows users to find recipes based on ingredients, cuisine, or meal type. With a clean and responsive UI, the app ensures a seamless user experience while fetching and displaying recipes efficiently. By leveraging React’s component-based architecture, I optimized performance and ensured smooth navigation. This project enhanced my skills in frontend development, API integration, and state management while providing a practical solution for cooking enthusiasts.">
+                            data-full-text="I built a Recipe Finder App using React.js, designed to help users discover and explore various recipes effortlessly. The app features a dynamic search functionality that allows users to find recipes based on ingredients, cuisine, or meal type. With a clean and responsive UI, the app ensures a seamless user experience while fetching and displaying recipes efficiently. By leveraging React's component-based architecture, I optimized performance and ensured smooth navigation. This project enhanced my skills in frontend development, API integration, and state management while providing a practical solution for cooking enthusiasts.">
                             I built a Recipe Finder App using React.js, designed to help users discover and explore...
                         </p>
                         <div class="project-links">
@@ -1737,7 +1692,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card" data-category="web">
                     <img src="images/movie.png" alt="Movie App" class="project-img">
                     <div class="project-content">
@@ -1754,7 +1708,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card" data-category="ui">
                     <img src="images/glam.png" alt="Beauty Glam Website" class="project-img">
                     <div class="project-content">
@@ -1771,7 +1724,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="project-card" data-category="app">
                     <img src="images/tech.png" alt="Realtech Website" class="project-img">
                     <div class="project-content">
@@ -1792,7 +1744,6 @@
         </div>
     </section>
 
-    <!-- Certifications Section -->
     <section class="certifications" id="certifications">
         <div class="container">
             <div class="section-header">
@@ -1800,7 +1751,6 @@
                 <br><br>
                 <p class="section-subtitle">My professional certifications and achievements</p>
             </div>
-
             <div class="cert-container">
                 <div class="cert-card">
                     <img src="images/refactory.png" alt="Refactory Academy Logo" class="cert-logo">
@@ -1810,7 +1760,6 @@
                     <a href="#" class="cert-link" target="_blank">View Certificate <i
                             class="ri-external-link-line"></i></a>
                 </div>
-
                 <div class="cert-card">
                     <img src="images/simplilearn.png" alt="Simplilearn Logo" class="cert-logo">
                     <h3 class="cert-title">UI/UX Design Basics</h3>
@@ -1819,7 +1768,6 @@
                     <a href="#" class="cert-link" target="_blank">View Certificate <i
                             class="ri-external-link-line"></i></a>
                 </div>
-
                 <div class="cert-card">
                     <img src="images/simplilearn.png" alt="Simplilearn Logo" class="cert-logo">
                     <h3 class="cert-title">React JS Basics</h3>
@@ -1828,7 +1776,6 @@
                     <a href="#" class="cert-link" target="_blank">View Certificate <i
                             class="ri-external-link-line"></i></a>
                 </div>
-
                 <div class="cert-card">
                     <img src="images/python.png" alt="Kaggle Logo" class="cert-logo">
                     <h3 class="cert-title">Python</h3>
@@ -1841,7 +1788,6 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
     <section class="contact" id="contact">
         <div class="container">
             <div class="section-header">
@@ -1917,13 +1863,12 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
                     <a href="#" class="footer-logo">Afrah Nakanwagi</a>
-                    <p class="footer-desc">A professional web developer and UI/UX designer focused on crafting clean &
+                    <p class="footer-desc">A professional software developer and UI/UX designer focused on crafting clean &
                         user-friendly experiences.</p>
                     <div class="footer-social">
                         <a href="https://github.com/afrahnakanwagi" class="social-link"><i
@@ -1931,10 +1876,8 @@
                         <a href="https://www.linkedin.com/in/afrah-nakanwagi-b829a5314/" class="social-link"><i
                                 class="ri-linkedin-fill"></i></a>
                         <a href="https://x.com/naiyosh28792" class="social-link"><i class="ri-twitter-fill"></i></a>
-                        <!-- <a href="#" class="social-link"><i class="ri-dribbble-line"></i></a> -->
                     </div>
                 </div>
-
                 <div class="footer-links-column">
                     <h3 class="footer-title">Quick Links</h3>
                     <ul class="footer-links">
@@ -1950,7 +1893,6 @@
                                     class="ri-arrow-right-s-line"></i> Contact</a></li>
                     </ul>
                 </div>
-
                 <div class="footer-links-column">
                     <h3 class="footer-title">Resources</h3>
                     <ul class="footer-links">
@@ -1965,229 +1907,16 @@
                     </ul>
                 </div>
             </div>
-
             <div class="footer-bottom">
                 <p>© 2025 Afrah Nakanwagi. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Mobile Menu Toggle
-            const menuBtn = document.querySelector('.menu-btn');
-            const navList = document.querySelector('.nav-list');
-
-            menuBtn.addEventListener('click', function () {
-                navList.classList.toggle('active');
-                menuBtn.innerHTML = navList.classList.contains('active') ?
-                    '<i class="ri-close-line"></i>' : '<i class="ri-menu-line"></i>';
-            });
-
-            // Close mobile menu when clicking on a link
-            const navLinks = document.querySelectorAll('.nav-link');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navList.classList.remove('active');
-                    menuBtn.innerHTML = '<i class="ri-menu-line"></i>';
-                });
-            });
-
-            // Smooth scrolling for internal links
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-
-                    const targetId = this.getAttribute('href');
-                    if (targetId === '#') return;
-
-                    const targetElement = document.querySelector(targetId);
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
-
-            // Sticky Header
-            const header = document.querySelector('header');
-            window.addEventListener('scroll', function () {
-                if (window.scrollY > 50) {
-                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
-                } else {
-                    header.style.boxShadow = 'none';
-                }
-            });
-
-            // Typed text effect for hero subtitle
-            const typedTextElement = document.querySelector('.typed-text');
-            const textArray = ["Software Developer", "Python Backend Developer", "Web Developer", "UI/UX Designer"];
-            let textIndex = 0;
-            let charIndex = 0;
-            let isDeleting = false;
-            let typingDelay = 100;
-            let erasingDelay = 50;
-            let newTextDelay = 2000;
-
-            function type() {
-                const currentText = textArray[textIndex];
-
-                if (isDeleting) {
-                    typedTextElement.textContent = currentText.substring(0, charIndex - 1);
-                    charIndex--;
-                    typingDelay = erasingDelay;
-                } else {
-                    typedTextElement.textContent = currentText.substring(0, charIndex + 1);
-                    charIndex++;
-                    typingDelay = 100;
-                }
-
-                if (!isDeleting && charIndex === currentText.length) {
-                    typingDelay = newTextDelay;
-                    isDeleting = true;
-                } else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    textIndex = (textIndex + 1) % textArray.length;
-                }
-
-                setTimeout(type, typingDelay);
-            }
-
-            setTimeout(type, 1000);
-
-            // Project Filtering
-            const filterBtns = document.querySelectorAll('.filter-btn');
-            const projectCards = document.querySelectorAll('.project-card');
-
-            filterBtns.forEach(btn => {
-                btn.addEventListener('click', function () {
-                    filterBtns.forEach(btn => btn.classList.remove('active'));
-                    this.classList.add('active');
-
-                    const filterValue = this.getAttribute('data-filter');
-
-                    projectCards.forEach(card => {
-                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
-                            card.style.display = 'block';
-                            setTimeout(() => {
-                                card.style.opacity = '1';
-                                card.style.transform = 'translateY(0)';
-                            }, 100);
-                        } else {
-                            card.style.opacity = '0';
-                            card.style.transform = 'translateY(20px)';
-                            setTimeout(() => {
-                                card.style.display = 'none';
-                            }, 300);
-                        }
-                    });
-                });
-            });
-
-            // Contact Form Handling
-            const contactForm = document.getElementById('contactForm');
-
-            contactForm.addEventListener('submit', function (e) {
-                e.preventDefault();
-
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const subject = document.getElementById('subject').value;
-                const message = document.getElementById('message').value;
-
-                if (!name || !email || !subject || !message) {
-                    alert('Please fill all fields');
-                    return;
-                }
-
-                alert('Thank you for your message! I will get back to you soon.');
-                contactForm.reset();
-            });
-
-            // Animate skill bars on scroll
-            const skillBars = document.querySelectorAll('.skill-progress');
-
-            function animateSkillBars() {
-                skillBars.forEach(bar => {
-                    const percentage = bar.parentElement.previousElementSibling.querySelector('.skill-percentage').textContent;
-                    bar.style.width = '0';
-
-                    setTimeout(() => {
-                        bar.style.width = percentage;
-                    }, 300);
-                });
-            }
-
-            const skillsSection = document.getElementById('skills');
-
-            if (skillsSection) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            animateSkillBars();
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.2 });
-
-                observer.observe(skillsSection);
-            }
-
-            // Download CV functionality
-            const downloadCvBtn = document.getElementById('download-cv');
-            downloadCvBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                alert('In a real portfolio, this button would download your CV. Since file downloads are not supported in this environment, you would typically link to a hosted PDF file.');
-            });
-
-            // Read More Modal Functionality
-            const readMoreButtons = document.querySelectorAll('.read-more-btn');
-            readMoreButtons.forEach(button => {
-                button.addEventListener('click', function () {
-                    const projectCard = this.closest('.project-card');
-                    const fullText = projectCard.querySelector('.project-desc').getAttribute('data-full-text');
-                    const projectTitle = projectCard.querySelector('.project-title').textContent;
-
-                    // Create modal
-                    const modal = document.createElement('div');
-                    modal.classList.add('modal');
-                    modal.innerHTML = `
-                    <div class="modal-content">
-                        <button class="modal-close">×</button>
-                        <h3 class="modal-title">${projectTitle}</h3>
-                        <p class="modal-desc">${fullText}</p>
-                    </div>
-                `;
-
-                    document.body.appendChild(modal);
-                    modal.style.display = 'flex';
-
-                    // Close modal
-                    const closeButton = modal.querySelector('.modal-close');
-                    closeButton.addEventListener('click', () => {
-                        modal.remove();
-                    });
-
-                    // Close modal on outside click
-                    modal.addEventListener('click', (e) => {
-                        if (e.target === modal) {
-                            modal.remove();
-                        }
-                    });
-
-                    // Close modal on Escape key press
-                    document.addEventListener('keydown', function handler(e) {
-                        if (e.key === 'Escape') {
-                            modal.remove();
-                            document.removeEventListener('keydown', handler);
-                        }
-                    });
-                });
-            });
-        });
-    </script>
+    <div id="notification" class="notification">
+        <i class="notification-icon"></i>
+        <span id="notification-message"></span>
+    </div>
 </body>
 
 </html>
