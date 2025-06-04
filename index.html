@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <script>
         // Initialize EmailJS
-        (function() {
+        (function () {
             emailjs.init("A9PP_17kmmDngJ3fG");
             console.log('EmailJS initialized');
         })();
@@ -20,20 +20,20 @@
         function showNotification(message, type) {
             const notification = document.getElementById('notification');
             const notificationMessage = document.getElementById('notification-message');
-            
+
             // Set message and type
             notificationMessage.textContent = message;
             notification.className = `notification ${type}`;
-            
+
             // Add icon based on type
             const icon = notification.querySelector('.notification-icon');
-            icon.className = type === 'success' ? 
-                'ri-check-line notification-icon' : 
+            icon.className = type === 'success' ?
+                'ri-check-line notification-icon' :
                 'ri-close-line notification-icon';
-            
+
             // Show notification
             notification.classList.add('show');
-            
+
             // Hide after 5 seconds
             setTimeout(() => {
                 notification.classList.remove('show');
@@ -41,13 +41,13 @@
         }
 
         // Wait for the DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const contactForm = document.getElementById('contactForm');
-            
+
             if (contactForm) {
-                contactForm.addEventListener('submit', function(e) {
+                contactForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     // Get form values
                     const name = document.getElementById('name').value;
                     const email = document.getElementById('email').value;
@@ -72,12 +72,12 @@
 
                     // Send the email
                     emailjs.send('service_7fh4bfd', 'template_rub879s', templateParams)
-                        .then(function(response) {
+                        .then(function (response) {
                             console.log('SUCCESS!', response);
                             showNotification('Message sent successfully!', 'success');
                             contactForm.reset();
                         })
-                        .catch(function(error) {
+                        .catch(function (error) {
                             console.error('FAILED...', error);
                             console.error('Error details:', {
                                 status: error.status,
@@ -86,7 +86,7 @@
                             });
                             showNotification('Failed to send message: ' + error.text, 'error');
                         })
-                        .finally(function() {
+                        .finally(function () {
                             submitBtn.innerHTML = 'Send Message <i class="ri-send-plane-line"></i>';
                             submitBtn.disabled = false;
                         });
@@ -331,9 +331,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0);
             }
+
             50% {
                 transform: translateY(-20px);
             }
@@ -563,9 +566,12 @@
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.05);
             }
@@ -1167,6 +1173,7 @@
         }
 
         @media (max-width: 576px) {
+
             .contact-info-card,
             .contact-form {
                 padding: 1rem;
@@ -1354,6 +1361,7 @@
                 opacity: 0;
                 transform: translateY(20px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -1868,7 +1876,8 @@
             <div class="footer-content">
                 <div class="footer-about">
                     <a href="#" class="footer-logo">Afrah Nakanwagi</a>
-                    <p class="footer-desc">A professional software developer and UI/UX designer focused on crafting clean &
+                    <p class="footer-desc">A professional software developer and UI/UX designer focused on crafting
+                        clean &
                         user-friendly experiences.</p>
                     <div class="footer-social">
                         <a href="https://github.com/afrahnakanwagi" class="social-link"><i
@@ -1917,6 +1926,224 @@
         <i class="notification-icon"></i>
         <span id="notification-message"></span>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Mobile Menu Toggle
+            const menuBtn = document.querySelector('.menu-btn');
+            const navList = document.querySelector('.nav-list');
+
+            menuBtn.addEventListener('click', function () {
+                navList.classList.toggle('active');
+                menuBtn.innerHTML = navList.classList.contains('active') ?
+                    '<i class="ri-close-line"></i>' : '<i class="ri-menu-line"></i>';
+            });
+
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navList.classList.remove('active');
+                    menuBtn.innerHTML = '<i class="ri-menu-line"></i>';
+                });
+            });
+
+            // Smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Sticky Header
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 5px 20px rgba(0, 0, 0, 0.1)';
+                } else {
+                    header.style.boxShadow = 'none';
+                }
+            });
+
+            // Typed text effect for hero subtitle
+            const typedTextElement = document.querySelector('.typed-text');
+            const textArray = ["Software Developer", "Python Backend Developer", "Web Developer", "UI/UX Designer"];
+            let textIndex = 0;
+            let charIndex = 0;
+            let isDeleting = false;
+            let typingDelay = 100;
+            let erasingDelay = 50;
+            let newTextDelay = 2000;
+
+            function type() {
+                const currentText = textArray[textIndex];
+
+                if (isDeleting) {
+                    typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+                    charIndex--;
+                    typingDelay = erasingDelay;
+                } else {
+                    typedTextElement.textContent = currentText.substring(0, charIndex + 1);
+                    charIndex++;
+                    typingDelay = 100;
+                }
+
+                if (!isDeleting && charIndex === currentText.length) {
+                    typingDelay = newTextDelay;
+                    isDeleting = true;
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    textIndex = (textIndex + 1) % textArray.length;
+                }
+
+                setTimeout(type, typingDelay);
+            }
+
+            setTimeout(type, 1000);
+
+            // Project Filtering
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    filterBtns.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filterValue = this.getAttribute('data-filter');
+
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'translateY(0)';
+                            }, 100);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'translateY(20px)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
+                });
+            });
+
+            // Contact Form Handling
+            const contactForm = document.getElementById('contactForm');
+
+            contactForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const subject = document.getElementById('subject').value;
+                const message = document.getElementById('message').value;
+
+                if (!name || !email || !subject || !message) {
+                    alert('Please fill all fields');
+                    return;
+                }
+
+                alert('Thank you for your message! I will get back to you soon.');
+                contactForm.reset();
+            });
+
+            // Animate skill bars on scroll
+            const skillBars = document.querySelectorAll('.skill-progress');
+
+            function animateSkillBars() {
+                skillBars.forEach(bar => {
+                    const percentage = bar.parentElement.previousElementSibling.querySelector('.skill-percentage').textContent;
+                    bar.style.width = '0';
+
+                    setTimeout(() => {
+                        bar.style.width = percentage;
+                    }, 300);
+                });
+            }
+
+            const skillsSection = document.getElementById('skills');
+
+            if (skillsSection) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateSkillBars();
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                observer.observe(skillsSection);
+            }
+
+            // Download CV functionality
+            const downloadCvBtn = document.getElementById('download-cv');
+            downloadCvBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                alert('In a real portfolio, this button would download your CV. Since file downloads are not supported in this environment, you would typically link to a hosted PDF file.');
+            });
+
+            // Read More Modal Functionality
+            const readMoreButtons = document.querySelectorAll('.read-more-btn');
+            readMoreButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const projectCard = this.closest('.project-card');
+                    const fullText = projectCard.querySelector('.project-desc').getAttribute('data-full-text');
+                    const projectTitle = projectCard.querySelector('.project-title').textContent;
+
+                    // Create modal
+                    const modal = document.createElement('div');
+                    modal.classList.add('modal');
+                    modal.innerHTML = `
+                    <div class="modal-content">
+                        <button class="modal-close">×</button>
+                        <h3 class="modal-title">${projectTitle}</h3>
+                        <p class="modal-desc">${fullText}</p>
+                    </div>
+                `;
+
+                    document.body.appendChild(modal);
+                    modal.style.display = 'flex';
+
+                    // Close modal
+                    const closeButton = modal.querySelector('.modal-close');
+                    closeButton.addEventListener('click', () => {
+                        modal.remove();
+                    });
+
+                    // Close modal on outside click
+                    modal.addEventListener('click', (e) => {
+                        if (e.target === modal) {
+                            modal.remove();
+                        }
+                    });
+
+                    // Close modal on Escape key press
+                    document.addEventListener('keydown', function handler(e) {
+                        if (e.key === 'Escape') {
+                            modal.remove();
+                            document.removeEventListener('keydown', handler);
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>
